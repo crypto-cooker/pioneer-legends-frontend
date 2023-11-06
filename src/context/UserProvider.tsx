@@ -15,7 +15,11 @@ import { getNftDetail } from "../utils/util";
 import axios from "axios";
 import bs58 from "bs58";
 import { useRouter } from "next/router";
-import { PublicKey } from "@solana/web3.js";
+import {
+  PublicKey,
+  Transaction,
+  TransactionInstruction,
+} from "@solana/web3.js";
 
 export interface UserContextProps {
   allNftList: NftItem[];
@@ -49,7 +53,7 @@ const defaultContext: UserContextProps = {
   getUserData: () => {},
   isAuthrized: false,
   setIsAuthrized: () => {},
-  sign: () => {},
+  sign: (isLedger?: boolean) => {},
   isSignning: false,
   isNetSpeed: "",
   setIsNetSpeed: () => {},
@@ -184,30 +188,67 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setIsDataLoading(false);
   };
 
-  const sign = async () => {
-    if (!signMessage) return;
+  const sign = async (isLedger?: boolean) => {
     setIsSignning(true);
     try {
       const nonce = await getNonce(publicKey?.toBase58()!);
-      if (nonce && connected) {
-        const message = new TextEncoder().encode(
-          `Authorize your wallet. nonce: ${nonce}`
-        );
-        const sig = await signMessage(message);
+      const statement = `Authorize your wallet. nonce: ${nonce}`;
 
-        if (sig) {
-          const ret = await authorizeUser(
-            publicKey?.toBase58()!,
-            bs58.encode(new Uint8Array(sig as unknown as ArrayBuffer)),
-            nonce as string
-          );
+      if (!isLedger) {
+        if (!signMessage) {
+          return;
+        }
+        
+        if (nonce && connected) {
+          const message = new TextEncoder().encode(statement);
+          const sig = await signMessage(message);
 
-          if (ret) {
-            router.push("/map");
-            setIsAuthrized(true);
-          } else {
-            router.push("/");
+          if (sig) {
+            const ret = await authorizeUser(
+              publicKey?.toBase58()!,
+              bs58.encode(new Uint8Array(sig as unknown as ArrayBuffer)),
+              nonce as string
+            );
+
+            if (ret) {
+              router.push("/map");
+              setIsAuthrized(true);
+            } else {
+              router.push("/");
+            }
           }
+        }
+      } else {
+        const MEMO_PROGRAM_ID = new PublicKey(
+          "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr"
+        );
+        const blockHash = (await solConnection.getLatestBlockhash()).blockhash;
+        const tx = new Transaction().add(
+          new TransactionInstruction({
+            programId: MEMO_PROGRAM_ID,
+            keys: [],
+            data: Buffer.from(statement, "utf8"),
+          })
+        );
+        tx.feePayer = wallet.publicKey!;
+        tx.recentBlockhash = blockHash;
+
+        const signedTx = await wallet.signTransaction!(tx);
+        const serializedTx = signedTx.serialize();
+        const bufferStr = JSON.stringify(Array.from(serializedTx));
+
+        const ret = await authorizeUser(
+          publicKey?.toBase58()!,
+          bufferStr,
+          nonce as string,
+          true
+        );
+
+        if (ret) {
+          router.push("/map");
+          setIsAuthrized(true);
+        } else {
+          router.push("/");
         }
       }
     } catch (error) {
