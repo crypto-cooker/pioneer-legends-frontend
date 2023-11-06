@@ -194,9 +194,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (wallet.publicKey && !isAuthrized && !walletModal.visible) {
-      sign(isLedgerSignIn);
+      sign(true);
     }
-  }, [walletModal.visible]);
+  }, [walletModal.visible, wallet]);
+
 
   const sign = async (isLedger?: boolean) => {
     setIsSignning(true);
