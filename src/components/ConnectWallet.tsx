@@ -8,7 +8,8 @@ import Skeleton from "react-loading-skeleton";
 import { LAMPORTS_PER_SOL, SystemProgram, Transaction } from "@solana/web3.js";
 
 const ConnectWallet = () => {
-  const { wallets, select, publicKey, connected, signTransaction } = useWallet();
+  const { wallets, select, publicKey, connected, signTransaction } =
+    useWallet();
   const { isSignning, sign } = useUserData();
   const { connection } = useConnection();
 
@@ -31,6 +32,7 @@ const ConnectWallet = () => {
   };
 
   const handleSign = async () => {
+    console.log("sign");
     await sign();
   };
 
@@ -70,8 +72,6 @@ const ConnectWallet = () => {
     if (!address) {
       return console.log("Wallet not connected");
     }
-
-
   };
 
   useEffect(() => {
@@ -133,7 +133,8 @@ const ConnectWallet = () => {
             className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566]"
             onClick={() => handleConnect("Ledger")}
           >
-            <div className="flex items-center gap-2"
+            <div
+              className="flex items-center gap-2"
               onClick={() => handleClickAddLedgerWallet()}
             >
               <LedgerIcon />

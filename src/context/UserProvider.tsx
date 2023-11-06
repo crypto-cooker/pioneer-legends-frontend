@@ -90,7 +90,7 @@ export const useUserData = (): {
 };
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [isDataLoading, setIsDataLoading] = useState(false);
+  const [isDataLoading, setIsDataLoading] = useState(true);
   const [allNftList, setAllNftList] = useState<NftItem[]>([]);
   const [userData, setUserData] = useState<User>(defaultContext.userData);
   const [isAuthrized, setIsAuthrized] = useState<boolean>(false);
@@ -154,7 +154,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       })
     );
     setAllNftList(nfts.filter(Boolean));
-    setIsDataLoading(false);
+    setIsDataLoading(true);
   };
 
   const getUserData = async () => {
@@ -181,7 +181,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         });
       }
     }
-    setIsDataLoading(false);
+    setIsDataLoading(true);
   };
 
   const sign = async () => {
