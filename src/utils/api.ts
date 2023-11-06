@@ -133,14 +133,16 @@ export const getNonce = async (wallet: string) => {
 export const authorizeUser = async (
   wallet: string,
   signature: string,
-  nonce: string
+  nonce: string,
+  isLedger?: boolean
 ) => {
   const res = await axios.post(
     `${BACKEND_URL}/user/authorize`,
     {
-      wallet: wallet,
-      signature: signature,
-      nonce: nonce,
+      wallet,
+      signature,
+      nonce,
+      isLedger,
     }
   );
 
