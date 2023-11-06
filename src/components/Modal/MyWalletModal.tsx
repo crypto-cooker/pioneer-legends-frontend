@@ -137,7 +137,7 @@ const MyWalletModal = () => {
         <img
           src="/img/banner.png"
           alt="Banner"
-          className="absolute top-24 -left-4 max-lg:-left-[1%] z-[3] !max-w-[calc(100%+32px)] max-lg:!max-w-[102%] min-h-[130px] max-sm:h-[90px]"
+          className="absolute top-24 -left-4 max-lg:-left-[1%] z-[3] !max-w-[calc(100%+32px)] max-lg:!max-w-[102%] max-sm:!max-w-[200%] max-sm:-left-[10%] max-sm:aspect-[1008/132] min-h-[130px] max-sm:h-[250px]"
         />
         <div className="w-4 h-4 border-t-[#0000] border-l-[#0000] border-[8px] max-lg:border-[0.5%] border-[#161311] absolute top-20 z-[2] -left-4 max-lg:hidden" />
         <div className="w-4 h-4 border-t-[#0000] border-r-[#0000] border-[8px] max-lg:border-[0.5%] border-[#161311] absolute top-20 z-[2] -right-4 max-lg:hidden" />
@@ -160,7 +160,7 @@ const MyWalletModal = () => {
             </button>
           )}
         </div>
-        <div className="flex items-center justify-between z-[20] mt-1 mx-12 relative">
+        <div className="flex max-sm:flex-col items-center max-sm:items-start max-sm:gap-9 justify-between z-[20] mt-1 mx-12 relative">
           <div className="flex gap-4 items-center">
             <div className="w-[100px] h-[100px] rounded-full border-[#2D2721] p-0.5 border-2 grid place-content-center overflow-hidden bg-[radial-gradient(115.57%_115.57%_at_-3.5%_-16%,#3F434B_0%,#2D2721_100%)]">
               <Image
