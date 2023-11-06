@@ -20,6 +20,7 @@ import {
   Transaction,
   TransactionInstruction,
 } from "@solana/web3.js";
+import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 
 export interface UserContextProps {
   allNftList: NftItem[];
@@ -101,11 +102,14 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [isSignning, setIsSignning] = useState(false);
   const [isNetSpeed, setIsNetSpeed] = useState("");
 
+  const [isLedgerSignIn, setIsLedgerSignIn] = useState(false);
+
   const router = useRouter();
 
   const { signMessage, publicKey, connected } = useWallet();
 
   const wallet = useWallet();
+  const walletModal = useWalletModal();
 
   const getNfts = async (once?: boolean) => {
     if (wallet.publicKey === null) return [];
@@ -188,17 +192,30 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setIsDataLoading(false);
   };
 
+  useEffect(() => {
+    if (wallet.publicKey && !isAuthrized && !walletModal.visible) {
+      sign(isLedgerSignIn);
+    }
+  }, [walletModal.visible]);
+
   const sign = async (isLedger?: boolean) => {
     setIsSignning(true);
     try {
       const nonce = await getNonce(publicKey?.toBase58()!);
       const statement = `Authorize your wallet. nonce: ${nonce}`;
 
+      // If wallet is not connected, connect wallet first
+      if (!wallet.publicKey) {
+        setIsLedgerSignIn(!!isLedger);
+        walletModal.setVisible(true);
+        return;
+      }
+
       if (!isLedger) {
         if (!signMessage) {
           return;
         }
-        
+
         if (nonce && connected) {
           const message = new TextEncoder().encode(statement);
           const sig = await signMessage(message);

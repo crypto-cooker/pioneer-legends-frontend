@@ -8,8 +8,7 @@ import Skeleton from "react-loading-skeleton";
 import { LAMPORTS_PER_SOL, SystemProgram, Transaction } from "@solana/web3.js";
 
 const ConnectWallet = () => {
-  const { wallets, select, publicKey, connected, signTransaction } =
-    useWallet();
+  const { wallets, select, publicKey, disconnect } = useWallet();
   const { isSignning, sign } = useUserData();
   const { connection } = useConnection();
 
@@ -38,6 +37,7 @@ const ConnectWallet = () => {
   useEffect(() => {
     handleConnect("Phantom");
   }, []);
+
   return (
     <div className="relative connect">
       <div className="flex flex-row gap-8">
@@ -55,7 +55,9 @@ const ConnectWallet = () => {
           <>
             {publicKey ? (
               <Button variant="primary" onClick={() => handleSign()}>
-                Connect wallet
+                {publicKey.toBase58().slice(0, 3) +
+                  "..." +
+                  publicKey.toBase58().slice(-3)}
               </Button>
             ) : (
               <Button variant="primary" onClick={() => handleSign()}>
@@ -100,6 +102,15 @@ const ConnectWallet = () => {
               Phantom/Ledger
             </div>
           </button>
+          {publicKey && (
+            <button
+              className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566]"
+              // onClick={() => handleConnect("Ledger")}
+              onClick={() => disconnect()}
+            >
+              <div className="flex items-center gap-2">Disconnect</div>
+            </button>
+          )}
         </div>
       </div>
     </div>
