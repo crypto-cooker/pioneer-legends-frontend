@@ -34,45 +34,6 @@ const ConnectWallet = () => {
     await sign();
   };
 
-  const handleClickAddLedgerWallet = async () => {
-    if (!publicKey || !signTransaction) {
-      return console.log("Wallet not connected");
-    }
-
-    const transaction = new Transaction().add(
-      SystemProgram.transfer({
-        fromPubkey: publicKey,
-        toPubkey: publicKey,
-        lamports: 0.001 * LAMPORTS_PER_SOL,
-      })
-    );
-
-    transaction.feePayer = publicKey;
-    const blockhash = await connection.getLatestBlockhash();
-    transaction.recentBlockhash = blockhash.blockhash;
-
-    const signed = await signTransaction(transaction);
-    const signature = await connection.sendRawTransaction(signed.serialize());
-    const txRes = await connection.confirmTransaction({
-      blockhash: blockhash.blockhash,
-      lastValidBlockHeight: blockhash.lastValidBlockHeight,
-      signature: signature,
-    });
-
-    if (txRes.value.err) {
-      return alert(
-        "Transaction failed, please make sure you have enough SOL in your wallet"
-      );
-    }
-
-    const address = publicKey?.toBase58();
-
-    if (!address) {
-      return console.log("Wallet not connected");
-    }
-
-
-  };
 
   useEffect(() => {
     handleConnect("Phantom");
@@ -112,7 +73,7 @@ const ConnectWallet = () => {
               "linear-gradient(180deg, #0F0902 0%, #26211E 100%)",
           }}
         ></div>
-        {/* <div className="relative z-10 mt-5">
+        <div className="relative z-10 mt-5">
           <button
             className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566]"
             onClick={() => handleSign()}
@@ -134,13 +95,13 @@ const ConnectWallet = () => {
             onClick={() => handleConnect("Ledger")}
           >
             <div className="flex items-center gap-2"
-              onClick={() => handleClickAddLedgerWallet()}
+            // onClick={() => handleClickAddLedgerWallet()}
             >
               <LedgerIcon />
               Phantom/Ledger
             </div>
           </button>
-        </div> */}
+        </div>
       </div>
     </div>
   );
