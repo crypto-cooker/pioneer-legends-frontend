@@ -8,8 +8,7 @@ import Skeleton from "react-loading-skeleton";
 import { LAMPORTS_PER_SOL, SystemProgram, Transaction } from "@solana/web3.js";
 
 const ConnectWallet = () => {
-  const { wallets, select, publicKey, connected, signTransaction } =
-    useWallet();
+  const { wallets, select, publicKey, connected, signTransaction } = useWallet();
   const { isSignning, sign } = useUserData();
   const { connection } = useConnection();
 
@@ -32,7 +31,6 @@ const ConnectWallet = () => {
   };
 
   const handleSign = async () => {
-    console.log("sign");
     await sign();
   };
 
@@ -72,6 +70,8 @@ const ConnectWallet = () => {
     if (!address) {
       return console.log("Wallet not connected");
     }
+
+
   };
 
   useEffect(() => {
@@ -93,11 +93,11 @@ const ConnectWallet = () => {
         ) : (
           <>
             {publicKey ? (
-              <Button variant="primary" onClick={handleClickAddLedgerWallet}>
+              <Button variant="primary" onClick={handleSign}>
                 Connect wallet
               </Button>
             ) : (
-              <Button variant="primary" onClick={handleClickAddLedgerWallet}>
+              <Button variant="primary" onClick={handleSign}>
                 Connect wallet
               </Button>
             )}
@@ -112,7 +112,7 @@ const ConnectWallet = () => {
               "linear-gradient(180deg, #0F0902 0%, #26211E 100%)",
           }}
         ></div>
-        <div className="relative z-10 mt-5">
+        {/* <div className="relative z-10 mt-5">
           <button
             className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566]"
             onClick={() => handleSign()}
@@ -133,15 +133,14 @@ const ConnectWallet = () => {
             className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566]"
             onClick={() => handleConnect("Ledger")}
           >
-            <div
-              className="flex items-center gap-2"
+            <div className="flex items-center gap-2"
               onClick={() => handleClickAddLedgerWallet()}
             >
               <LedgerIcon />
               Phantom/Ledger
             </div>
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
