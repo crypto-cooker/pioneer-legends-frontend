@@ -20,7 +20,6 @@ const ConnectWallet = () => {
       if (wallet) {
         if (wallet.readyState === "Installed") {
           select(wallet.adapter.name);
-          // await sign();
         } else {
           errorAlert("Cannot connect the wallet!");
         }
@@ -55,13 +54,14 @@ const ConnectWallet = () => {
           <>
             {publicKey ? (
               <Button variant="primary" onClick={() => handleSign()}>
-                {publicKey.toBase58().slice(0, 3) +
+                {/* {publicKey.toBase58().slice(0, 3) +
                   "..." +
-                  publicKey.toBase58().slice(-3)}
+                  publicKey.toBase58().slice(-3)} */}
+                  Connect Wallet
               </Button>
             ) : (
               <Button variant="primary" onClick={() => handleSign()}>
-                Connect wallet
+                Connect Wallet
               </Button>
             )}
           </>
