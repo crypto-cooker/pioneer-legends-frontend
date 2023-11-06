@@ -35,7 +35,7 @@ const HomeHeader: FC<Props> = ({ scroll }) => {
             }}
           />
         </div>
-        <div className="flex py-[18px] w-full justify-between lg:justify-end">
+        <div className="flex py-[18px] w-full justify-between lg:justify-end max-sm:justify-end">
           <ConnectWallet />
           <div className="flex items-center gap-4 ml-10 max-sm:hidden">
             <a

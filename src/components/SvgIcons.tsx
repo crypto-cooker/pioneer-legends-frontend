@@ -633,6 +633,16 @@ export const LoadingSpin = () => {
   );
 };
 
+export const LoadingSpinNFT = () => {
+  return (
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="w-8 h-8 grid place-content-center mx-auto animate-spin">
+        <Image src="/img/spin.png" width={36} height={36} alt="" />
+      </div>
+    </div>
+  );
+};
+
 export const EclipsSymbol: FC<IconProps> = ({ className }) => {
   return (
     <svg

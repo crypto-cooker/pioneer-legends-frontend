@@ -5,18 +5,14 @@ import { useContext, useState, useEffect, useMemo } from "react";
 import { ModalContext } from "../../context/ModalProvider";
 import { UserContext, UserContextProps } from "../../context/UserProvider";
 import Button from "../Button";
-import Link from "next/link";
 import StakeCard from "../StakeCard";
 import StakeTab from "../StakeTab";
-import ModalEdges from "./ModalCorner";
 import CloseButton from "./CloseButton";
 import { stakeMultiNFT, stakeNFT, unStakeMultiNFT } from "../../solana/util";
 import useWindowSize from "../../utils/useWindowSize";
-import { CrossIcon, LoadingSpin } from "../SvgIcons";
+import { CrossIcon, LoadingSpinNFT } from "../SvgIcons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { stake, unStake } from "../../utils/api";
-import { NftLoading } from "../Nftloading";
 
 const StakeModal = () => {
   const { isStakeModal, setIsStakeModal, title } =
@@ -312,7 +308,7 @@ const StakeModal = () => {
         </div>
         <div className="mt-20 ml-12 max-md:ml-4 pr-6 max-w-[calc(100%-96px)] max-md:max-w-[calc(100%-32px)] relative z-[20] h-[300px] max-md:h-[calc(100%-350px)] grid grid-cols-5 max-lg:grid-cols-4 max-md:grid-cols-2 gap-[26px] overflow-y-scroll overflow-x-hidden">
           {useData.isDataLoading ? (
-            <NftLoading />
+            <LoadingSpinNFT />
           ) : (
             <>
               {tab === "wallet" ? (
