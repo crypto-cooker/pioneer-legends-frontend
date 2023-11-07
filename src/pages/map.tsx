@@ -51,20 +51,8 @@ const Map = () => {
     outlawCount: 0,
   });
   const audio = useRef<HTMLAudioElement>(null);
+  const screen = useRef<HTMLDivElement>(null);
   const [cookieInfo, setCookieInfo] = useState<string>("");
-
-  // const [play, { pause }] = useSound("/music/landing_bg_music.wav", {
-  //   onend: () => {
-  //     setIsEnd(true);
-  //   },
-  // });
-
-  // useEffect(() => {
-  //   if (isEnd) {
-  //     play();
-  //     setIsEnd(false);
-  //   }
-  // }, [isEnd]);
 
   const wallet = useWallet();
 
@@ -218,6 +206,14 @@ const Map = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (screen.current) {
+      screen.current.addEventListener("focus", () => {
+        audio.current?.play();
+      });
+    }
+  }, [screen]);
+
   if (!isNetSpeed) {
     return <></>;
   }
@@ -227,8 +223,8 @@ const Map = () => {
       <Head>
         <title>Map | Pioneer Legends</title>
       </Head>
-      <main>
-        <audio autoPlay src="/music/pl_bg20.wav" ref={audio}></audio>
+      <main ref={screen}>
+        <audio autoPlay loop src="/music/pl_bg20.wav" ref={audio}></audio>
         <div className="relative w-screen h-screen overflow-hidden">
           <div
             ref={viewport}
@@ -238,13 +234,16 @@ const Map = () => {
               address={
                 wallet.publicKey?.toBase58() ? wallet.publicKey?.toBase58() : ""
               }
-              pfp=""
             />
-            <Link href={"/"} passHref>
-              <div className="w-[289px] h-[32px] absolute top-[21px] left-[26px] z-50  opacity-0 lg:opacity-100 pointer-events-none lg:pointer-events-auto">
+            {width < 800 ? (
+              <div className="absolute bottom-5 left-5 z-50">
                 <img src="/img/logo@text.png" className="relative" alt="" />
               </div>
-            </Link>
+            ) : (
+              <div className="absolute top-[21px] left-[26px] z-50 pointer-events-none">
+                <img src="/img/logo@text.png" className="relative" alt="" />
+              </div>
+            )}
             <div
               className="relative object-center"
               ref={content}
@@ -447,7 +446,7 @@ const Map = () => {
           </div>
         </div>
       </main>
-      <Loading />
+      {/* <Loading /> */}
     </>
   );
 };

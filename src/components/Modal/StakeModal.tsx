@@ -29,6 +29,7 @@ const StakeModal = () => {
   const useData = useContext<UserContextProps>(UserContext);
   const { getNfts } = useContext<UserContextProps>(UserContext);
   const [isWalletSelected, setWalletSelected] = useState(false);
+  const [scaleX, setScaleX] = useState<string>("");
 
   const notify = () =>
     toast(
@@ -96,6 +97,11 @@ const StakeModal = () => {
       getNfts();
     }
   }, [isStakeModal]);
+
+  useEffect(() => {
+    const scale = (width - 360) / 8;
+    setScaleX(`scaleX(${scale})`);
+  }, [width]);
 
   if (!wallet.publicKey || !isStakeModal) return <></>;
 
@@ -175,13 +181,27 @@ const StakeModal = () => {
         {/**
          * Make banner image
          */}
-        <img
-          src="/img/banner.png"
-          alt="Banner"
-          className="absolute top-24 -left-4 max-lg:-left-[1%] z-[3] !max-w-[calc(100%+32px)] max-lg:!max-w-[102%] max-sm:h-[90px]"
-        />
-        <div className="w-4 h-4 border-t-[#0000] border-l-[#0000] border-[8px] max-lg:border-[0.5%] border-[#161311] absolute top-20 z-[2] -left-4 max-lg:hidden" />
-        <div className="w-4 h-4 border-t-[#0000] border-r-[#0000] border-[8px] max-lg:border-[0.5%] border-[#161311] absolute top-20 z-[2] -right-4 max-lg:hidden" />
+        {width >= 768 ? (
+          <>
+            <img
+              src="/img/banner.png"
+              alt="Banner"
+              className="absolute top-24 -left-4 max-lg:-left-[1%] z-[3] !max-w-[calc(100%+32px)] max-lg:!max-w-[102%] max-sm:h-[90px]"
+            />
+            <div className="w-4 h-4 border-t-[#0000] border-l-[#0000] border-[8px] max-lg:border-[0.5%] border-[#161311] absolute top-20 z-[2] -left-4 max-lg:hidden" />
+            <div className="w-4 h-4 border-t-[#0000] border-r-[#0000] border-[8px] max-lg:border-[0.5%] border-[#161311] absolute top-20 z-[2] -right-4 max-lg:hidden" />
+          </>
+        ) : (
+          <div className="flex justify-between absolute top-24 z-[3] w-full">
+            <img src="/img/banner_s_left.png" alt="" />
+            <img
+              src="/img/banner_s_center.png"
+              alt=""
+              style={{ transform: scaleX }}
+            />
+            <img src="/img/banner_s_right.png" alt="" />
+          </div>
+        )}
         <div className="px-6 py-10 flex justify-between items-center relative z-[2]">
           <p className="text-[24px] font-secondary text-primary-100 leading-[1.33] uppercase">
             {title}
@@ -306,7 +326,7 @@ const StakeModal = () => {
               ))}
           </div>
         </div>
-        <div className="mt-20 ml-12 max-md:ml-4 pr-6 max-w-[calc(100%-96px)] max-md:max-w-[calc(100%-32px)] relative z-[20] h-[300px] max-md:h-[calc(100%-350px)] grid grid-cols-5 max-lg:grid-cols-4 max-md:grid-cols-2 gap-[26px] overflow-y-scroll overflow-x-hidden">
+        <div className="mt-20 ml-12 max-md:ml-4 pr-6 max-w-[calc(100%-96px)] max-md:max-w-[calc(100%-32px)] relative z-[20] h-[300px] max-md:h-[calc(100%-350px)] grid grid-cols-5 max-lg:grid-cols-4 max-md:grid-cols-2 gap-[26px] max-md:gap-4 overflow-y-scroll overflow-x-hidden max-md:[&>*:nth-child(odd)]:justify-self-end max-md:[&>*:nth-child(even)]:justify-self-start">
           {useData.isDataLoading ? (
             <LoadingSpinNFT />
           ) : (
