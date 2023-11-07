@@ -1,9 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  output: 'export',
+  reactStrictMode: false,
   images: {
-    domains: ['arweave.net', 'ipfs.io', 'pioneer.mypinata.cloud'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ]
+  },
+  resolve: {
+    fallback: {
+      "fs": false
+    },
   }
 }
 
