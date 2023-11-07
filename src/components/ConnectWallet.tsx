@@ -8,8 +8,7 @@ import Skeleton from "react-loading-skeleton";
 import { LAMPORTS_PER_SOL, SystemProgram, Transaction } from "@solana/web3.js";
 
 const ConnectWallet = () => {
-  const { wallets, select, publicKey, connected, signTransaction } =
-    useWallet();
+  const { wallets, select, publicKey, disconnect } = useWallet();
   const { isSignning, sign } = useUserData();
   const { connection } = useConnection();
 
@@ -21,7 +20,6 @@ const ConnectWallet = () => {
       if (wallet) {
         if (wallet.readyState === "Installed") {
           select(wallet.adapter.name);
-          // await sign();
         } else {
           errorAlert("Cannot connect the wallet!");
         }
@@ -31,55 +29,17 @@ const ConnectWallet = () => {
     }
   };
 
-  const handleSign = async () => {
-    console.log("sign");
-    await sign();
-  };
-
-  const handleClickAddLedgerWallet = async () => {
-    if (!publicKey || !signTransaction) {
-      return console.log("Wallet not connected");
-    }
-
-    const transaction = new Transaction().add(
-      SystemProgram.transfer({
-        fromPubkey: publicKey,
-        toPubkey: publicKey,
-        lamports: 0.001 * LAMPORTS_PER_SOL,
-      })
-    );
-
-    transaction.feePayer = publicKey;
-    const blockhash = await connection.getLatestBlockhash();
-    transaction.recentBlockhash = blockhash.blockhash;
-
-    const signed = await signTransaction(transaction);
-    const signature = await connection.sendRawTransaction(signed.serialize());
-    const txRes = await connection.confirmTransaction({
-      blockhash: blockhash.blockhash,
-      lastValidBlockHeight: blockhash.lastValidBlockHeight,
-      signature: signature,
-    });
-
-    if (txRes.value.err) {
-      return alert(
-        "Transaction failed, please make sure you have enough SOL in your wallet"
-      );
-    }
-
-    const address = publicKey?.toBase58();
-
-    if (!address) {
-      return console.log("Wallet not connected");
-    }
+  const handleSign = async (isLedger?: boolean) => {
+    await sign(isLedger);
   };
 
   useEffect(() => {
     handleConnect("Phantom");
   }, []);
+
   return (
     <div className="relative connect">
-      <div className="">
+      <div className="flex flex-row gap-8">
         {isSignning ? (
           <Skeleton
             baseColor="#828282"
@@ -93,11 +53,11 @@ const ConnectWallet = () => {
         ) : (
           <>
             {publicKey ? (
-              <Button variant="primary" onClick={handleClickAddLedgerWallet}>
+              <Button variant="primary" onClick={handleSign}>
                 Connect wallet
               </Button>
             ) : (
-              <Button variant="primary" onClick={handleClickAddLedgerWallet}>
+              <Button variant="primary" onClick={handleSign}>
                 Connect wallet
               </Button>
             )}
@@ -131,12 +91,10 @@ const ConnectWallet = () => {
           </button>
           <button
             className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566]"
-            onClick={() => handleConnect("Ledger")}
+            // onClick={() => handleConnect("Ledger")}
+            onClick={() => handleSign(true)}
           >
-            <div
-              className="flex items-center gap-2"
-              onClick={() => handleClickAddLedgerWallet()}
-            >
+            <div className="flex items-center gap-2">
               <LedgerIcon />
               Phantom/Ledger
             </div>

@@ -15,7 +15,12 @@ import { getNftDetail } from "../utils/util";
 import axios from "axios";
 import bs58 from "bs58";
 import { useRouter } from "next/router";
-import { PublicKey } from "@solana/web3.js";
+import {
+  PublicKey,
+  Transaction,
+  TransactionInstruction,
+} from "@solana/web3.js";
+import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 
 export interface UserContextProps {
   allNftList: NftItem[];
@@ -49,7 +54,7 @@ const defaultContext: UserContextProps = {
   getUserData: () => {},
   isAuthrized: false,
   setIsAuthrized: () => {},
-  sign: () => {},
+  sign: (isLedger?: boolean) => {},
   isSignning: false,
   isNetSpeed: "",
   setIsNetSpeed: () => {},
@@ -97,22 +102,27 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [isSignning, setIsSignning] = useState(false);
   const [isNetSpeed, setIsNetSpeed] = useState("");
 
+  const [isLedgerSignIn, setIsLedgerSignIn] = useState(false);
+
   const router = useRouter();
 
   const { signMessage, publicKey, connected } = useWallet();
 
   const wallet = useWallet();
+  const walletModal = useWalletModal();
 
   const getNfts = async (once?: boolean) => {
     if (wallet.publicKey === null) return [];
     setIsDataLoading(true);
-    const stakedData = await getNft(wallet.publicKey.toBase58());
-
-    const nftList = await getParsedNftAccountsByOwner({
-      // publicAddress: "FipD7y7cPXhmXtQorVy2x94wQx4Ay1DKz6u9byjtc2E3",
-      publicAddress: wallet.publicKey.toBase58(),
-      connection: solConnection,
-    });
+    
+    const [nftList, stakedData] = await Promise.all([
+      getParsedNftAccountsByOwner({
+        // publicAddress: "FipD7y7cPXhmXtQorVy2x94wQx4Ay1DKz6u9byjtc2E3",
+        publicAddress: wallet.publicKey.toBase58(),
+        connection: solConnection,
+      }),
+      getNft(wallet.publicKey.toBase58())
+    ]);
 
     const nfts = new Array(nftList.length); // Initialize with a reasonable capacity
 
@@ -184,30 +194,81 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setIsDataLoading(false);
   };
 
-  const sign = async () => {
-    if (!signMessage) return;
+  useEffect(() => {
+    if (wallet.publicKey && !isAuthrized && !walletModal.visible) {
+      sign(true);
+    }
+  }, [walletModal.visible, wallet]);
+
+
+  const sign = async (isLedger?: boolean) => {
     setIsSignning(true);
     try {
       const nonce = await getNonce(publicKey?.toBase58()!);
-      if (nonce && connected) {
-        const message = new TextEncoder().encode(
-          `Authorize your wallet. nonce: ${nonce}`
-        );
-        const sig = await signMessage(message);
+      const statement = `Authorize your wallet. nonce: ${nonce}`;
 
-        if (sig) {
-          const ret = await authorizeUser(
-            publicKey?.toBase58()!,
-            bs58.encode(new Uint8Array(sig as unknown as ArrayBuffer)),
-            nonce as string
-          );
+      // If wallet is not connected, connect wallet first
+      if (!wallet.publicKey) {
+        setIsLedgerSignIn(!!isLedger);
+        walletModal.setVisible(true);
+        return;
+      }
 
-          if (ret) {
-            router.push("/map");
-            setIsAuthrized(true);
-          } else {
-            router.push("/");
+      if (!isLedger) {
+        if (!signMessage) {
+          return;
+        }
+
+        if (nonce && connected) {
+          const message = new TextEncoder().encode(statement);
+          const sig = await signMessage(message);
+
+          if (sig) {
+            const ret = await authorizeUser(
+              publicKey?.toBase58()!,
+              bs58.encode(new Uint8Array(sig as unknown as ArrayBuffer)),
+              nonce as string
+            );
+
+            if (ret) {
+              router.push("/map");
+              setIsAuthrized(true);
+            } else {
+              router.push("/");
+            }
           }
+        }
+      } else {
+        const MEMO_PROGRAM_ID = new PublicKey(
+          "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr"
+        );
+        const blockHash = (await solConnection.getLatestBlockhash()).blockhash;
+        const tx = new Transaction().add(
+          new TransactionInstruction({
+            programId: MEMO_PROGRAM_ID,
+            keys: [],
+            data: Buffer.from(statement, "utf8"),
+          })
+        );
+        tx.feePayer = wallet.publicKey!;
+        tx.recentBlockhash = blockHash;
+
+        const signedTx = await wallet.signTransaction!(tx);
+        const serializedTx = signedTx.serialize();
+        const bufferStr = JSON.stringify(Array.from(serializedTx));
+
+        const ret = await authorizeUser(
+          publicKey?.toBase58()!,
+          bufferStr,
+          nonce as string,
+          true
+        );
+
+        if (ret) {
+          router.push("/map");
+          setIsAuthrized(true);
+        } else {
+          router.push("/");
         }
       }
     } catch (error) {
