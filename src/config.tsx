@@ -56,10 +56,8 @@ export const NFT_METADATA = [
   },
 ];
 
-export const BACKEND_URL = "https://pioneer-legends-backend-production.up.railway.app";
+export const BACKEND_URL =
+  "https://pioneer-legends-backend-production.up.railway.app";
 // export const BACKEND_URL = "http://192.168.109.68:3000";
-
-export const SOL_RPC =
-  "https://solana-mainnet.g.alchemy.com/v2/pp946jWG51JnX947vqCBmJOYoE1p61au";
 
 // export const METADATA_URL = "https://ipfs.io/ipfs/bafybeihfekmexki5l3e5i6bm26a35cm75g7xprcf72n4fjt7edyvaq43iy/";
