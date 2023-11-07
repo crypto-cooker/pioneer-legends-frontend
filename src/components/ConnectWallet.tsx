@@ -53,15 +53,12 @@ const ConnectWallet = () => {
         ) : (
           <>
             {publicKey ? (
-              <Button variant="primary" onClick={() => handleSign()}>
-                {/* {publicKey.toBase58().slice(0, 3) +
-                  "..." +
-                  publicKey.toBase58().slice(-3)} */}
-                  Connect Wallet
+              <Button variant="primary" onClick={handleSign}>
+                Connect wallet
               </Button>
             ) : (
-              <Button variant="primary" onClick={() => handleSign()}>
-                Connect Wallet
+              <Button variant="primary" onClick={handleSign}>
+                Connect wallet
               </Button>
             )}
           </>
@@ -102,15 +99,6 @@ const ConnectWallet = () => {
               Phantom/Ledger
             </div>
           </button>
-          {publicKey && (
-            <button
-              className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566]"
-              // onClick={() => handleConnect("Ledger")}
-              onClick={() => disconnect()}
-            >
-              <div className="flex items-center gap-2">Disconnect</div>
-            </button>
-          )}
         </div>
       </div>
     </div>

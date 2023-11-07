@@ -6,14 +6,13 @@ import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
-import { NETWORK, SOL_RPC } from "../config";
 import { IDL } from "../solana/idl";
 import { PROGRAM_ID } from "../solana/constant";
 import {
   createLockMultiPnftTx,
   createLockPnftTx,
   createUnlockPnftTx,
-  createUnlockPnftMultiTx
+  createUnlockPnftMultiTx,
 } from "./transaction";
 
 export const METAPLEX = new PublicKey(
@@ -23,7 +22,9 @@ export const MPL_DEFAULT_RULE_SET = new PublicKey(
   "AdH2Utn6Fus15ZhtenW4hZBQnvtLgM1YCW2MfVp7pYS5"
 );
 
-export const solConnection = new web3.Connection(SOL_RPC);
+export const solConnection = new web3.Connection(
+  process.env.NEXT_PUBLIC_SOL_RPC!
+);
 
 const getAssociatedTokenAccount = async (
   ownerPubkey: PublicKey,

@@ -14,14 +14,13 @@ import { clusterApiUrl } from "@solana/web3.js";
 
 // Default styles that can be overridden by your app
 import "@solana/wallet-adapter-react-ui/styles.css";
-import { SOL_RPC } from "../config";
 
 export default function WalletConnect(props: { children: any }) {
   // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
   const network = WalletAdapterNetwork.Mainnet;
 
   // You can also provide a custom RPC endpoint.
-  const endpoint = SOL_RPC;
+  const endpoint = process.env.NEXT_PUBLIC_SOL_RPC;
 
   // @solana/wallet-adapter-wallets includes all the adapters but supports tree shaking and lazy loading --
   // Only the wallets you configure here will be compiled into your application, and only the dependencies
@@ -37,7 +36,7 @@ export default function WalletConnect(props: { children: any }) {
   );
 
   return (
-    <ConnectionProvider endpoint={endpoint}>
+    <ConnectionProvider endpoint={endpoint!}>
       <WalletProvider wallets={wallets} autoConnect={true}>
         {props.children}
       </WalletProvider>
