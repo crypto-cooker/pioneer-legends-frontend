@@ -8,7 +8,7 @@ import Skeleton from "react-loading-skeleton";
 import { LAMPORTS_PER_SOL, SystemProgram, Transaction } from "@solana/web3.js";
 
 const ConnectWallet = () => {
-  const { wallets, select, publicKey, connected, signTransaction } = useWallet();
+  const { wallets, select, publicKey, disconnect } = useWallet();
   const { isSignning, sign } = useUserData();
   const { connection } = useConnection();
 
@@ -20,7 +20,6 @@ const ConnectWallet = () => {
       if (wallet) {
         if (wallet.readyState === "Installed") {
           select(wallet.adapter.name);
-          // await sign();
         } else {
           errorAlert("Cannot connect the wallet!");
         }
@@ -30,17 +29,17 @@ const ConnectWallet = () => {
     }
   };
 
-  const handleSign = async () => {
-    await sign();
+  const handleSign = async (isLedger?: boolean) => {
+    await sign(isLedger);
   };
-
 
   useEffect(() => {
     handleConnect("Phantom");
   }, []);
+
   return (
     <div className="relative connect">
-      <div className="">
+      <div className="flex flex-row gap-8">
         {isSignning ? (
           <Skeleton
             baseColor="#828282"
@@ -92,11 +91,10 @@ const ConnectWallet = () => {
           </button>
           <button
             className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566]"
-            onClick={() => handleConnect("Ledger")}
+            // onClick={() => handleConnect("Ledger")}
+            onClick={() => handleSign(true)}
           >
-            <div className="flex items-center gap-2"
-            // onClick={() => handleClickAddLedgerWallet()}
-            >
+            <div className="flex items-center gap-2">
               <LedgerIcon />
               Phantom/Ledger
             </div>
