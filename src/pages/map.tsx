@@ -240,11 +240,15 @@ const Map = () => {
               }
               pfp=""
             />
-            <Link href={"/"} passHref>
-              <div className="w-[289px] h-[32px] absolute top-[21px] left-[26px] z-50  opacity-0 lg:opacity-100 pointer-events-none lg:pointer-events-auto">
+            {width < 800 ? (
+              <div className="absolute bottom-5 left-5 z-50">
                 <img src="/img/logo@text.png" className="relative" alt="" />
               </div>
-            </Link>
+            ) : (
+              <div className="absolute top-[21px] left-[26px] z-50 pointer-events-none">
+                <img src="/img/logo@text.png" className="relative" alt="" />
+              </div>
+            )}
             <div
               className="relative object-center"
               ref={content}

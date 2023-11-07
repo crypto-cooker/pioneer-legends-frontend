@@ -239,14 +239,6 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
             </div>
           </div>
         </div>
-        {/* <img
-          src="/img/background.jpg"
-          className="w-full absolute left-0 top-0 h-full min-h-full object-cover"
-          style={{
-            height: `calc(100vh - ${scroll}px)`,
-          }}
-          alt=""
-        /> */}
       </main>
     </>
   );
