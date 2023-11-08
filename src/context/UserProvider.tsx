@@ -114,14 +114,14 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const getNfts = async (once?: boolean) => {
     if (wallet.publicKey === null) return [];
     setIsDataLoading(true);
-    
+
     const [nftList, stakedData] = await Promise.all([
       getParsedNftAccountsByOwner({
         // publicAddress: "FipD7y7cPXhmXtQorVy2x94wQx4Ay1DKz6u9byjtc2E3",
         publicAddress: wallet.publicKey.toBase58(),
         connection: solConnection,
       }),
-      getNft(wallet.publicKey.toBase58())
+      getNft(wallet.publicKey.toBase58()),
     ]);
 
     const nfts = new Array(nftList.length); // Initialize with a reasonable capacity
@@ -199,7 +199,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       sign(true);
     }
   }, [walletModal.visible, wallet]);
-
 
   const sign = async (isLedger?: boolean) => {
     setIsSignning(true);

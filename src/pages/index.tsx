@@ -29,10 +29,6 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
   const video = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  const handleSign = async () => {
-    await sign();
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       if (mainRef.current !== null) {
@@ -56,6 +52,12 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const handleReplay = () => {
+    if (video.current) {
+      video.current.play();
+    }
+  };
 
   const playingButton = () => {
     if (!video.current) return;
@@ -92,17 +94,7 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
       const mbps = (bps / 1048576).toFixed(2);
       setIsNetSpeed(mbps);
     }
-  }, []);
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     console.log("Muted", video.current);
-  //     if (video.current) {
-  //       video.current.muted = false;
-  //       video.current.autoplay = true;
-  //     }
-  //   }, 1500);
-  // }, []);
+  }, [setIsNetSpeed]);
 
   if (!isNetSpeed) {
     return <></>;
@@ -134,10 +126,10 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
           autoPlay={true}
           playsInline
           loop
-          muted
           data-wf-ignore="true"
           data-object-fit="cover"
           id="video"
+          onEnded={handleReplay}
         >
           <source
             src={"/video/landing_50.mp4"}
@@ -228,25 +220,10 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
                 >
                   <Button variant="secondary">See Whitepaper</Button>
                 </a>
-                {/* {publicKey ? (
-                  <Button variant="primary" onClick={handleSign}>
-                    Connect wallet
-                  </Button>
-                ) : (
-                  <Button variant="primary">Connect wallet</Button>
-                )} */}
               </div>
             </div>
           </div>
         </div>
-        {/* <img
-          src="/img/background.jpg"
-          className="w-full absolute left-0 top-0 h-full min-h-full object-cover"
-          style={{
-            height: `calc(100vh - ${scroll}px)`,
-          }}
-          alt=""
-        /> */}
       </main>
     </>
   );
