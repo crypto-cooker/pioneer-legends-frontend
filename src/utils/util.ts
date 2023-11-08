@@ -1,12 +1,13 @@
-
 export const getNftDetail = async (uri: string) => {
   try {
     // const response = await axios.get(uri);
     const response = (await Promise.race([
-        fetch(uri, { method: 'GET' }),
-        new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 3000)),
+      fetch(uri, { method: "GET" }),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Timeout")), 300000)
+      ),
     ])) as Response;
-    
+
     if (response.status === 200) {
       return response.json();
     } else {
@@ -17,7 +18,7 @@ export const getNftDetail = async (uri: string) => {
   } catch (error) {
     // Handle any errors that might occur during the HTTP request
     console.log("fetch nft detail error: ", error);
-    return null
+    return null;
   }
 };
 
