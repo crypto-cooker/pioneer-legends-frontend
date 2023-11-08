@@ -391,7 +391,7 @@ const Map = () => {
               >
                 <img
                   src="/img/build-hover1.png"
-                  className="opacity-0 group-hover:opacity-100 duration-150"
+                  className="opacity-0 group-hover:opacity-100 duration-150 object-[13px_bottom]"
                   style={{
                     width: 230,
                     height: 230,
