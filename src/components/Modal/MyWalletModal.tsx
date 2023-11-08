@@ -174,7 +174,7 @@ const MyWalletModal = () => {
            */}
           {isMobile ? (
             <CloseButton
-              className="absolute right-5 top-[34px] z-50"
+              className="absolute -right-5 top-[34px] z-50"
               onClose={() => setIsMyWalletModal(false)}
             />
           ) : (

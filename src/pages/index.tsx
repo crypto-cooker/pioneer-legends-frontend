@@ -182,12 +182,11 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
             id="content"
           >
             <div className="w-[calc(100%-40px)] lg:w-[970px] mx-5 lg:mx-auto">
-              <h2 className="text-4xl text-white max-lg:text-center">
-                Feeling lucky?
-              </h2>
+              <h2 className="text-4xl text-white max-lg:text-center">About</h2>
               <p className="mt-4 font-medium text-2xl text-[#E1E4CD] max-lg:text-center">
                 Welcome to Pioneer Legends, where the Old Wild West meets the
-                New. This is a world full of lawlessness, euphoria, and
+                New.
+                <br /> This is a world full of lawlessness, euphoria, and
                 degeneracy...
               </p>
               <div className="flex w-full justify-center mt-10">
