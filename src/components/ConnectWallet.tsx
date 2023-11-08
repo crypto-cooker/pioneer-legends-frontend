@@ -34,7 +34,7 @@ const ConnectWallet = () => {
   };
 
   useEffect(() => {
-    handleConnect("Phantom");
+    // handleConnect("Phantom");
   }, []);
 
   return (
@@ -53,11 +53,11 @@ const ConnectWallet = () => {
         ) : (
           <>
             {publicKey ? (
-              <Button variant="primary" onClick={handleSign}>
+              <Button variant="primary">
                 Connect wallet
               </Button>
             ) : (
-              <Button variant="primary" onClick={handleSign}>
+              <Button variant="primary">
                 Connect wallet
               </Button>
             )}
