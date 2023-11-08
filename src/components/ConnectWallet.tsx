@@ -53,11 +53,11 @@ const ConnectWallet = () => {
         ) : (
           <>
             {publicKey ? (
-              <Button variant="primary" onClick={handleSign}>
+              <Button variant="primary">
                 Connect wallet
               </Button>
             ) : (
-              <Button variant="primary" onClick={handleSign}>
+              <Button variant="primary">
                 Connect wallet
               </Button>
             )}
