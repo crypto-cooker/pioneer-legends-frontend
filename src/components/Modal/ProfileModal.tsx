@@ -81,16 +81,22 @@ const ProfileModal = () => {
     return (
       <>
         <div className="w-[116px] h-[116px] shadow-[6px_6px_0_#1E1915] opacity-10 justify-self-center">
-          <div className="blank_card1"></div>
+          <div className="blank_card1" />
         </div>
         <div className="w-[116px] h-[116px] shadow-[6px_6px_0_#1E1915] opacity-10 justify-self-center">
-          <div className="blank_card1"></div>
+          <div className="blank_card1" />
         </div>
         <div className="w-[116px] h-[116px] shadow-[6px_6px_0_#1E1915] opacity-10 justify-self-center">
-          <div className="blank_card1"></div>
+          <div className="blank_card1" />
         </div>
         <div className="w-[116px] h-[116px] shadow-[6px_6px_0_#1E1915] opacity-10 justify-self-center">
-          <div className="blank_card1"></div>
+          <div className="blank_card1" />
+        </div>
+        <div className="w-[116px] h-[116px] shadow-[6px_6px_0_#1E1915] opacity-10 justify-self-center">
+          <div className="blank_card1" />
+        </div>
+        <div className="w-[116px] h-[116px] shadow-[6px_6px_0_#1E1915] opacity-10 justify-self-center">
+          <div className="blank_card1" />
         </div>
         <h1 className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 font-medium text-center text-[#E4DECD]">
           You have no NFT,
@@ -156,7 +162,7 @@ const ProfileModal = () => {
            */}
           {isMobile ? (
             <CloseButton
-              className="absolute right-5 top-[34px] z-50"
+              className="absolute -right-5 top-[34px] z-50"
               onClose={closeModal}
             />
           ) : (
@@ -178,7 +184,7 @@ const ProfileModal = () => {
           <h1 className="font-medium text-sm text-white">Profile picture</h1>
           <div className="w-full min-h-[200px] max-sm:min-h-[calc(100vh-400px)] h-full overflow-x-hidden overflow-y-auto max-h-[200px] max-sm:max-h-[calc(100vh-400px)]">
             {allNftList.length !== 0 ? (
-              <div className="grid grid-cols-4 max-sm:grid-cols-2 gap-x-[10px] gap-y-4 relative">
+              <div className="grid grid-cols-4 max-sm:grid-cols-3 gap-x-[10px] gap-y-4 relative">
                 {console.log("allNftList", allNftList)}
                 {allNftList.map((item, index) => (
                   <ImageCard
@@ -192,7 +198,7 @@ const ProfileModal = () => {
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-4 max-sm:grid-cols-2 gap-x-[10px] gap-y-4 relative">
+              <div className="grid grid-cols-4 max-sm:grid-cols-3 gap-x-[10px] gap-y-4 relative">
                 <BlankCards />
               </div>
             )}

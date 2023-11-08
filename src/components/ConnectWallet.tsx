@@ -34,7 +34,7 @@ const ConnectWallet = () => {
   };
 
   useEffect(() => {
-    handleConnect("Phantom");
+    // handleConnect("Phantom");
   }, []);
 
   return (

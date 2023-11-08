@@ -449,3 +449,59 @@ main {
     transform: translateY(15px) rotate(45deg);
   }
 }
+
+.button_style {
+  position: relative;
+
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, #454A52 0, #454A52 100%), linear-gradient(to right, #454A52 0, #454A52 100%), linear-gradient(to right, #454A52 0, #454A52 100%), linear-gradient(to right, #454A52 0, #454A52 100%), linear-gradient(-45deg, transparent 45%, #454A52 45%, #454A52 80%, transparent 80%), linear-gradient(45deg, transparent 45%, #454A52 45%, #454A52 80%, transparent 80%), linear-gradient(-45deg, transparent 45%, #454A52 45%, #454A52 80%, transparent 80%), linear-gradient(45deg, transparent 45%, #454A52 45%, #454A52 80%, transparent 80%);
+    background-position: 5px 0, 100% 5px, 5px 100%, 0 5px, 0 0, 100% 0, 100% 100%, 0 100%;
+    background-size: calc(100% - 10px) 3px, 3px calc(100% - 10px), calc(100% - 10px) 3px, 3px calc(100% - 10px), 8px 8px, 8px 8px, 8px 8px, 8px 8px;
+    background-repeat: no-repeat, no-repeat;
+  }
+
+  &:hover::before {
+    background: transparent;
+  }
+
+  &:active {
+    transform: translate(4px, 4px);
+  }
+}
+
+.button_shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(-180deg, #181A1D 0%, rgba(75, 72, 69, 0.00) 100%);
+    clip-path: polygon(0 calc(50% - 5px), 3px calc(50% - 8px), 9px 50%, 3px calc(50% + 8px), 0 calc(50% + 5px));
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(-180deg, #181A1D 0%, rgba(75, 72, 69, 0.00) 100%);
+    clip-path: polygon(100% calc(50% - 5px), calc(100% - 3px) calc(50% - 8px), calc(100% - 9px) 50%, calc(100% - 3px) calc(50% + 8px), 100% calc(50% + 5px));
+  }
+}

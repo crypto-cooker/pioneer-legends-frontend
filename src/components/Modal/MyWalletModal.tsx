@@ -30,6 +30,7 @@ const MyWalletModal = () => {
   const { width } = useWindowSize();
   const { userData } = useUserData();
   const [balence, setBalence] = useState<string>("");
+  const [scaleX, setScaleX] = useState<string>("");
 
   useEffect(() => {
     const getBalance = async () => {
@@ -41,6 +42,12 @@ const MyWalletModal = () => {
     };
     getBalance();
   }, [wallet]);
+
+  useEffect(() => {
+    let scale = (width - 360) / 8;
+    scale = scale > 0 ? scale : 0;
+    setScaleX(`scaleX(${scale})`);
+  }, [width]);
 
   const isMobile = width > 768;
 
@@ -134,11 +141,27 @@ const MyWalletModal = () => {
         {/**
          * Make banner image
          */}
-        <img
-          src="/img/banner.png"
-          alt="Banner"
-          className="absolute top-24 -left-4 max-lg:-left-[1%] z-[3] !max-w-[calc(100%+32px)] max-lg:!max-w-[102%] max-sm:!max-w-[200%] max-sm:-left-[10%] max-sm:aspect-[1008/132] min-h-[130px] max-sm:h-[250px]"
-        />
+        {width >= 768 ? (
+          <>
+            <img
+              src="/img/banner.png"
+              alt="Banner"
+              className="absolute top-24 -left-4 max-lg:-left-[1%] z-[3] !max-w-[calc(100%+32px)] max-lg:!max-w-[102%] max-sm:!max-w-[200%] max-sm:-left-[10%] max-sm:aspect-[1008/132] min-h-[130px] max-sm:h-[250px]"
+            />
+            <div className="w-4 h-4 border-t-[#0000] border-l-[#0000] border-[8px] max-lg:border-[0.5%] border-[#161311] absolute top-20 z-[2] -left-4 max-lg:hidden" />
+            <div className="w-4 h-4 border-t-[#0000] border-r-[#0000] border-[8px] max-lg:border-[0.5%] border-[#161311] absolute top-20 z-[2] -right-4 max-lg:hidden" />
+          </>
+        ) : (
+          <div className="flex justify-between absolute top-24 z-[3] w-full">
+            <img src="/img/banner_w_left.png" alt="" />
+            <img
+              src="/img/banner_w_center.png"
+              alt=""
+              style={{ transform: scaleX }}
+            />
+            <img src="/img/banner_w_right.png" alt="" />
+          </div>
+        )}
         <div className="w-4 h-4 border-t-[#0000] border-l-[#0000] border-[8px] max-lg:border-[0.5%] border-[#161311] absolute top-20 z-[2] -left-4 max-lg:hidden" />
         <div className="w-4 h-4 border-t-[#0000] border-r-[#0000] border-[8px] max-lg:border-[0.5%] border-[#161311] absolute top-20 z-[2] -right-4 max-lg:hidden" />
         <div className="px-6 py-10 flex justify-between items-center relative z-[2]">
@@ -151,7 +174,7 @@ const MyWalletModal = () => {
            */}
           {isMobile ? (
             <CloseButton
-              className="absolute right-5 top-[34px] z-50"
+              className="absolute -right-5 top-[34px] z-50"
               onClose={() => setIsMyWalletModal(false)}
             />
           ) : (
@@ -160,7 +183,7 @@ const MyWalletModal = () => {
             </button>
           )}
         </div>
-        <div className="flex max-sm:flex-col items-center max-sm:items-start max-sm:gap-9 justify-between z-[20] mt-1 mx-12 relative">
+        <div className="flex max-md:flex-col items-center max-md:items-start max-md:gap-9 justify-between z-[20] mt-1 mx-12 relative">
           <div className="flex gap-4 items-center">
             <div className="w-[100px] h-[100px] rounded-full border-[#2D2721] p-0.5 border-2 grid place-content-center overflow-hidden bg-[radial-gradient(115.57%_115.57%_at_-3.5%_-16%,#3F434B_0%,#2D2721_100%)]">
               <Image
@@ -187,7 +210,7 @@ const MyWalletModal = () => {
               </div>
             </div>
           </div>
-          <div className="flex gap-8 justify-between">
+          <div className="flex w-full gap-8 max-md:justify-between justify-end">
             <Button variant="secondary" onClick={handleProfileModal}>
               Edit profile
             </Button>
