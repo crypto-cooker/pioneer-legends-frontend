@@ -126,6 +126,7 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
           autoPlay={true}
           playsInline
           loop
+          muted
           data-wf-ignore="true"
           data-object-fit="cover"
           id="video"
