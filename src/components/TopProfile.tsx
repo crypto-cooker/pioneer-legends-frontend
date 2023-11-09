@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { FC, useState, useContext } from "react";
 import { getShortAddress } from "../utils/util";
 import { HamburgerIcon } from "./SvgIcons";
@@ -39,12 +40,7 @@ const TopProfile: FC<Props> = ({ address }) => {
       className="fixed top-[18px] right-4 z-50 w-[132px] lg:w-[237px] h-[60px] flex items-center"
     >
       <div className="absolute left-0 top-0 w-[132px] lg:w-[237px] h-full overflow-hidden">
-        <div
-          className="absolute left-0 top-0 w-[237px] h-full opacity-75 backdrop-blur-[20px]"
-          style={{
-            backgroundImage: `url("/img/t-p-bg.svg")`,
-          }}
-        />
+        <div className="absolute left-0 top-0 w-[237px] h-full opacity-70 backdrop-blur-[2px] bg-[linear-gradient(180deg,#0F0902_0%,#26211E_100%)]" />
       </div>
       {/* eslint-disable-next-line */}
       <img
@@ -88,16 +84,18 @@ const TopProfile: FC<Props> = ({ address }) => {
             <>
               <div className="w-12 h-12 rounded-full z-20 relative ml-4 lg:ml-6 overflow-hidden bg-[radial-gradient(115.57%_115.57%_at_-3.5%_-16%,#3F434B_0%,#2D2721_100%)] after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:rounded-full hover:after:bg-[rgba(225,228,205,0.30)] flex items-center justify-center">
                 <div className="w-10 h-10 overflow-hidden rounded-full">
-                  <Image
+                  <img
                     src={
                       userData.image !== ""
                         ? userData.image
-                        : "/img/default-avatar.svg"
+                        : "/img/default-avatar.jpg"
                     }
-                    width={40}
-                    height={40}
-                    className="object-content"
-                    alt="user avartar"
+                    alt=""
+                    className={`rounded-[50%] ${
+                      userData.image !== ""
+                        ? "w-10 h-10 object-content"
+                        : "w-11 h-11 object-cover"
+                    }`}
                   />
                 </div>
               </div>

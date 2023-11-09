@@ -107,6 +107,10 @@ export const CustomCursor = () => {
         x: cursorPosition.x + 1,
         y: cursorPosition.y + 1,
       }}
+      transition={{
+        ease: "linear",
+        duration: 0,
+      }}
       hover={hover}
     />
   );
