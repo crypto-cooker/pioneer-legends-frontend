@@ -1,79 +1,229 @@
-import Image from "next/image";
-import { FC } from "react";
+import { useContext } from "react";
+import { styled } from "styled-components";
+import { HoverContext, TabContext } from "../context/ButtonProvider";
+import { H3 } from "./font/font";
 
 interface TabProps {
-  setTab: React.Dispatch<React.SetStateAction<"staked" | "wallet">>;
-  tab: "staked" | "wallet";
-  stakedNumber?: number;
-  walletNumber?: number;
+  $type: boolean;
 }
 
-const StakeTab: FC<TabProps> = ({
-  tab = "staked",
-  setTab,
-  stakedNumber = 0,
-  walletNumber = 0,
+const Tab = styled.div`
+  height: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 120px);
+`;
+
+const ButtonEffect = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+      90deg,
+      transparent 20%,
+      #dbf8fc 50%,
+      transparent 80%
+    ),
+    linear-gradient(90deg, transparent 20%, #dbf8fc 50%, transparent 80%);
+
+  background-position: 0 0, 0 100%;
+  background-size: 100% 2px, 100% 2px;
+  background-repeat: no-repeat, no-repeat;
+  object-position: center;
+  transition: all 0.2s ease-in-out;
+  transform: scaleX(0);
+`;
+
+const UpdateH = styled(H3)`
+  transition: all 0.3s ease-in-out;
+`;
+
+const LeftTab = styled.div<TabProps>`
+  background: ${(props) =>
+    !props.$type
+      ? "#2d2725"
+      : "linear-gradient(180deg, #647475 0%, #24282e 100%)"};
+  -webkit-clip-path: polygon(
+    6px 0,
+    100% 0,
+    100% 100%,
+    6px 100%,
+    0 calc(100% - 6px),
+    0 6px
+  );
+  clip-path: polygon(
+    6px 0,
+    100% 0,
+    100% 100%,
+    6px 100%,
+    0 calc(100% - 6px),
+    0 6px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  &:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: ${(props) =>
+      props.$type
+        ? "transparent"
+        : "linear-gradient(180deg, #00000044 0, #00000044 100%), linear-gradient(-45deg, transparent 28%, #00000044 28%, #00000044 50%, transparent 50%)"};
+    background-position: 6px 0, -3px 0;
+    background-size: calc(100% - 6px) 4px, 9px 9px;
+    background-repeat: no-repeat, no-repeat;
+  }
+
+  &:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: ${(props) =>
+      props.$type
+        ? "transparent"
+        : "linear-gradient(180deg, #383e47 0, #383e47 100%), linear-gradient(-45deg, transparent 40%, #383e47 40%, #383e47 50%, transparent 50%), linear-gradient(180deg, #383e47 0, #383e47 100%), linear-gradient(225deg, transparent 40%, #383e47 40%, #383e47 50%, transparent 50%), linear-gradient(180deg, #383e47 0, #383e47 100%)"};
+    background-position: 6px 0, 0 0, 0 6px, 0 100%, 6px 100%;
+    background-size: calc(100% - 6px) 1px, 6px 6px, 1px calc(100% - 12px),
+      6px 6px, calc(100% - 6px) 1px;
+    background-repeat: no-repeat, no-repeat;
+  }
+
+  &:hover {
+    ${(props) =>
+      props.$type &&
+      `
+    ${ButtonEffect} {
+      transform: scaleX(1);
+    }
+    `}
+  }
+
+  ${UpdateH} {
+    opacity: ${(props) => (props.$type ? "1" : "0.6")};
+  }
+`;
+
+const RightTab = styled.div<TabProps>`
+  background: ${(props) =>
+    props.$type
+      ? "#2d2725"
+      : "linear-gradient(180deg, #647475 0%, #24282e 100%)"};
+  -webkit-clip-path: polygon(
+    0 0,
+    calc(100% - 6px) 0,
+    100% 6px,
+    100% calc(100% - 6px),
+    calc(100% - 6px) 100%,
+    0 100%
+  );
+  clip-path: polygon(
+    0 0,
+    calc(100% - 6px) 0,
+    100% 6px,
+    100% calc(100% - 6px),
+    calc(100% - 6px) 100%,
+    0 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  &:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: ${(props) =>
+      !props.$type
+        ? "transparent"
+        : "linear-gradient(180deg, #00000044 0, #00000044 100%), linear-gradient(45deg, transparent 28%, #00000044 28%, #00000044 50%, transparent 50%)"};
+    background-position: 0 0, calc(100% + 3px) 0px;
+    background-size: calc(100% - 6px) 4px, 9px 9px;
+    background-repeat: no-repeat, no-repeat;
+  }
+
+  &:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: ${(props) =>
+      !props.$type
+        ? "transparent"
+        : "linear-gradient(180deg, #383e47 0, #383e47 100%), linear-gradient(45deg, transparent 40%, #383e47 40%, #383e47 50%, transparent 50%), linear-gradient(180deg, #383e47 0, #383e47 100%), linear-gradient(-225deg, transparent 40%, #383e47 40%, #383e47 50%, transparent 50%), linear-gradient(180deg, #383e47 0, #383e47 100%)"};
+    background-position: 0 0, 100% 0, 100% 6px, 100% 100%, 0 100%;
+    background-size: calc(100% - 6px) 1px, 6px 6px, 1px calc(100% - 12px),
+      6px 6px, calc(100% - 6px) 1px;
+    background-repeat: no-repeat, no-repeat;
+  }
+
+  &:hover {
+    ${(props) =>
+      !props.$type &&
+      `
+    ${ButtonEffect} {
+      transform: scaleX(1);
+    }
+    `}
+  }
+
+  ${UpdateH} {
+    opacity: ${(props) => (!props.$type ? "1" : "0.6")};
+  }
+`;
+
+export const TabButton = ({
+  stakedNumber,
+  walletNumber,
+}: {
+  stakedNumber: number;
+  walletNumber: number;
 }) => {
+  const { type, setType } = useContext(TabContext);
+  const { setHover } = useContext(HoverContext);
+
   return (
-    <div className="h-10 flex">
-      <button
-        className="w-[137px] h-10  relative"
-        onClick={() => setTab("wallet")}
+    <Tab
+      onMouseOver={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <LeftTab
+        $type={type}
+        onClick={() => {
+          !type && setType(true);
+        }}
       >
-        <div
-          className="text-[16px] relative z-10"
-          style={{
-            color: tab === "wallet" ? "#fff" : "#ffffff80",
-            fontWeight: tab === "wallet" ? 600 : 500,
-          }}
-        >
+        <ButtonEffect />
+        <UpdateH color="white" $weight="500">
           Wallet ({walletNumber})
-        </div>
-        {tab === "wallet" ? (
-          <Image
-            src="/img/tab-l-active.png"
-            layout="fill"
-            className="absolute left-0 top-0"
-            alt=""
-          />
-        ) : (
-          <Image
-            src="/img/tab-l-inactive.png"
-            layout="fill"
-            className="absolute left-0 top-0"
-            alt=""
-          />
-        )}
-      </button>
-      <button className="w-[137px] h-10  relative"
-        onClick={() => setTab("staked")}>
-        <div
-          className="text-[16px] relative z-10"
-          style={{
-            color: tab === "staked" ? "#fff" : "#ffffff80",
-            fontWeight: tab === "staked" ? 600 : 500,
-          }}
-        >
+        </UpdateH>
+      </LeftTab>
+      <RightTab
+        $type={type}
+        onClick={() => {
+          type && setType(false);
+        }}
+      >
+        <ButtonEffect />
+        <UpdateH color="white" $weight="500">
           Staked ({stakedNumber})
-        </div>
-        {tab === "staked" ? (
-          <Image
-            src="/img/tab-r-active.png"
-            layout="fill"
-            className="absolute left-0 top-0"
-            alt=""
-          />
-        ) : (
-          <Image
-            src="/img/tab-r-inactive.png"
-            layout="fill"
-            className="absolute left-0 top-0"
-            alt=""
-          />
-        )}
-      </button>
-    </div>
+        </UpdateH>
+      </RightTab>
+    </Tab>
   );
 };
-
-export default StakeTab;

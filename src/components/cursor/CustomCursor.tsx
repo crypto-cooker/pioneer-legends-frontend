@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
 import { styled, keyframes } from "styled-components";
-import { HoverContext } from "../../context/HoverProvider";
+import { HoverContext } from "../../context/ButtonProvider";
 
 interface CursorPositionProps {
   x: number;

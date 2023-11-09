@@ -15,7 +15,10 @@ import { UserProvider } from "../context/UserProvider";
 import StakeModal from "../components/Modal/StakeModal";
 import TagManager from "react-gtm-module";
 import "react-loading-skeleton/dist/skeleton.css";
-import { HoverContextProvider } from "../context/HoverProvider";
+import {
+  HoverContextProvider,
+  TabContextProvider,
+} from "../context/ButtonProvider";
 
 const tagManagerArgs = {
   gtmId: "G-7PRF0Q1K9J",
@@ -44,15 +47,17 @@ export default function App({ Component, pageProps }: AppProps) {
         <UserProvider>
           <ModalProvider>
             <HoverContextProvider>
-              <MainLayout>
-                <Component {...pageProps} />
-                <ProfileModal />
-                <DisconnectWalletModal />
-                <ShareModal />
-                <AboutModal />
-                <MyWalletModal />
-                <StakeModal />
-              </MainLayout>
+              <TabContextProvider>
+                <MainLayout>
+                  <Component {...pageProps} />
+                  <ProfileModal />
+                  <DisconnectWalletModal />
+                  <ShareModal />
+                  <AboutModal />
+                  <MyWalletModal />
+                  <StakeModal />
+                </MainLayout>
+              </TabContextProvider>
             </HoverContextProvider>
           </ModalProvider>
         </UserProvider>

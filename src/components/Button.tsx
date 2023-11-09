@@ -1,6 +1,6 @@
 import { FC, useContext } from "react";
 import { styled } from "styled-components";
-import { HoverContext } from "../context/HoverProvider";
+import { HoverContext } from "../context/ButtonProvider";
 import { H3, H4 } from "./font/font";
 
 interface ButtonProps {

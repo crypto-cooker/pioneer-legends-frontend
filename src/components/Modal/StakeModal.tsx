@@ -6,18 +6,19 @@ import { ModalContext } from "../../context/ModalProvider";
 import { UserContext, UserContextProps } from "../../context/UserProvider";
 import Button from "../Button";
 import StakeCard from "../StakeCard";
-import StakeTab from "../StakeTab";
+import { TabButton } from "../StakeTab";
 import CloseButton from "./CloseButton";
 import { stakeMultiNFT, stakeNFT, unStakeMultiNFT } from "../../solana/util";
 import useWindowSize from "../../utils/useWindowSize";
 import { CrossIcon, LoadingSpinNFT } from "../SvgIcons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { TabContext } from "../../context/ButtonProvider";
 
 const StakeModal = () => {
   const { isStakeModal, setIsStakeModal, title } =
     useContext<any>(ModalContext);
-  const [tab, setTab] = useState<"staked" | "wallet">("wallet");
+  const { type } = useContext(TabContext);
   const [selected, setSelected] = useState<string[]>([]);
   const [selectAble, setSelectAble] = useState(false);
   const [forceRender, setForeceRender] = useState(false);
@@ -84,7 +85,7 @@ const StakeModal = () => {
 
   useEffect(() => {
     cancelSelect();
-  }, [tab]);
+  }, [type]);
 
   const closeModal = () => {
     cancelSelect();
@@ -219,9 +220,7 @@ const StakeModal = () => {
           )}
         </div>
         <div className="flex items-center z-20 relative py-4 md:pl-12 md:pr-8 px-5 justify-between">
-          <StakeTab
-            tab={tab}
-            setTab={setTab}
+          <TabButton
             stakedNumber={stakedNfts.length}
             walletNumber={walletNfts.length}
           />
@@ -230,13 +229,13 @@ const StakeModal = () => {
               <Button
                 width={335}
                 title={
-                  tab === "wallet"
+                  type
                     ? "Stake(" + selected.length + ")"
                     : "Unstake(" + selected.length + ")"
                 }
                 color="white"
                 disable={selected.length === 0 || useData.isDataLoading}
-                onClick={tab === "wallet" ? stakeMulti : unstakeMulti}
+                onClick={type ? stakeMulti : unstakeMulti}
               />
             </div>
           )}
@@ -254,13 +253,13 @@ const StakeModal = () => {
                   <Button
                     width={128}
                     title={
-                      tab === "wallet"
+                      type
                         ? "Stake(" + selected.length + ")"
                         : "Unstake(" + selected.length + ")"
                     }
                     color="white"
                     disable={selected.length === 0 || useData.isDataLoading}
-                    onClick={tab === "wallet" ? stakeMulti : unstakeMulti}
+                    onClick={type ? stakeMulti : unstakeMulti}
                   />
                 </>
               ) : (
@@ -273,7 +272,7 @@ const StakeModal = () => {
                   Cancel
                 </p>
               ))}
-            {tab === "wallet" &&
+            {type &&
               walletNfts &&
               walletNfts.length !== 0 &&
               !selectAble &&
@@ -297,7 +296,7 @@ const StakeModal = () => {
                   Select
                 </p>
               ))}
-            {tab === "staked" &&
+            {type &&
               stakedNfts &&
               stakedNfts.length !== 0 &&
               !selectAble &&
@@ -328,7 +327,7 @@ const StakeModal = () => {
             <LoadingSpinNFT />
           ) : (
             <>
-              {tab === "wallet" ? (
+              {type ? (
                 <>
                   {walletNfts.length !== 0 ? (
                     <>
@@ -351,7 +350,7 @@ const StakeModal = () => {
                     BlankCards()
                   )}
                 </>
-              ) : tab === "staked" ? (
+              ) : type ? (
                 <>
                   {stakedNfts.length !== 0 ? (
                     <>
