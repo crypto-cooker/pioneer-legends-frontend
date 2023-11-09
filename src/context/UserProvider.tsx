@@ -174,7 +174,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         const res = await axios.get(
           `${BACKEND_URL}/user/profile/${wallet.publicKey.toBase58()}`
         );
-        console.log("res.data", res.data);
         if (res.data) {
           setUserData({
             wallet: wallet.publicKey.toBase58(),
@@ -278,7 +277,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    console.log(wallet.publicKey, wallet.connected, isAuthrized);
     if (wallet.connected) {
       getNfts();
       getUserData();

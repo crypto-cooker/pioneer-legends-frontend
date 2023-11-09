@@ -37,7 +37,6 @@ const StakeModal = () => {
     );
 
   const allNftList = useData ? useData.allNftList : [];
-  // console.log("allNftList", allNftList)
   const stakeMulti = async () => {
     if (selected.length !== 0) {
       await stakeMultiNFT(wallet, selected, setLoading, getNfts);
@@ -132,7 +131,6 @@ const StakeModal = () => {
               href="https://magiceden.io/marketplace/pioneer_legends"
               target="_blank"
               rel="noopener noreferrer"
-              className="cursor-pointer"
             >
               Magic Eden
             </a>
@@ -230,43 +228,40 @@ const StakeModal = () => {
           {selectAble && (
             <div className="fixed bottom-0 h-[88px] w-full md:hidden flex justify-center items-center backdrop-blur-sm bg-[#342B2590] left-0 z-[100]">
               <Button
+                width={335}
+                title={
+                  tab === "wallet"
+                    ? "Stake(" + selected.length + ")"
+                    : "Unstake(" + selected.length + ")"
+                }
+                color="white"
+                disable={selected.length === 0 || useData.isDataLoading}
                 onClick={tab === "wallet" ? stakeMulti : unstakeMulti}
-                disabled={selected.length === 0 || useData.isDataLoading}
-                style={{
-                  width: "calc(100vw - 40px)",
-                  marginLeft: "8px",
-                  marginRight: "8px",
-                }}
-              >
-                {/* {loading ? (
-                  <div className="w-6 h-6">
-                    <LoadingSpin />
-                  </div>
-                ) : (
-                  <> */}
-                {tab === "wallet"
-                  ? "Stake(" + selected.length + ")"
-                  : "Unstake(" + selected.length + ")"}
-                {/* </>
-                )} */}
-              </Button>
+              />
             </div>
           )}
           <div className="flex max-md:mr-5 md:gap-8">
             {selectAble &&
               (isMobile ? (
                 <>
-                  <Button onClick={cancelSelect} variant="secondary">
-                    Cancel
-                  </Button>
                   <Button
+                    width={128}
+                    main={false}
+                    title="Cancel"
+                    color="white"
+                    onClick={cancelSelect}
+                  />
+                  <Button
+                    width={128}
+                    title={
+                      tab === "wallet"
+                        ? "Stake(" + selected.length + ")"
+                        : "Unstake(" + selected.length + ")"
+                    }
+                    color="white"
+                    disable={selected.length === 0 || useData.isDataLoading}
                     onClick={tab === "wallet" ? stakeMulti : unstakeMulti}
-                    disabled={selected.length === 0 || useData.isDataLoading}
-                  >
-                    {tab === "wallet"
-                      ? "Stake(" + selected.length + ")"
-                      : "Unstake(" + selected.length + ")"}
-                  </Button>
+                  />
                 </>
               ) : (
                 <p
@@ -284,12 +279,13 @@ const StakeModal = () => {
               !selectAble &&
               (isMobile ? (
                 <Button
+                  width={128}
+                  title="Select"
+                  color="white"
                   onClick={() => {
                     setSelectAble(true);
                   }}
-                >
-                  Select
-                </Button>
+                />
               ) : (
                 <p
                   className={`text-sm font-medium text-white `}
@@ -307,12 +303,13 @@ const StakeModal = () => {
               !selectAble &&
               (isMobile ? (
                 <Button
+                  width={128}
+                  title="Select"
+                  color="white"
                   onClick={() => {
                     setSelectAble(true);
                   }}
-                >
-                  Select
-                </Button>
+                />
               ) : (
                 <p
                   className={`text-sm font-medium text-white hover:text-[#29A3A9]`}

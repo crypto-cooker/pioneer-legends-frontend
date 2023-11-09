@@ -42,8 +42,6 @@ export const createInitUserTx = async (
   );
 
   try {
-    console.log("userPool: ", userPool.toBase58());
-
     const txId = await program.methods
       .initUser()
       .accounts({
@@ -165,7 +163,7 @@ export const createLockMultiPnftTx = async (
 
     const txs: Transaction[] = [];
 
-    for (let i = 0; i < nftMints.length; i ++) {
+    for (let i = 0; i < nftMints.length; i++) {
       const mint = nftMints[i];
 
       const nftEdition = await getMasterEdition(new PublicKey(mint));
@@ -189,10 +187,10 @@ export const createLockMultiPnftTx = async (
       const tx = new Transaction();
 
       const modifyComputeUnits = ComputeBudgetProgram.setComputeUnitLimit({
-        units: 2000000
+        units: 2000000,
       });
       const addPriorityFee = ComputeBudgetProgram.setComputeUnitPrice({
-          microLamports: 1
+        microLamports: 1,
       });
       tx.add(modifyComputeUnits);
       tx.add(addPriorityFee);
@@ -224,7 +222,7 @@ export const createLockMultiPnftTx = async (
       txs.push(tx);
     }
     const blockhash = (await connection.getLatestBlockhash()).blockhash;
-    txs.map((tx) => tx.recentBlockhash = blockhash);
+    txs.map((tx) => (tx.recentBlockhash = blockhash));
 
     let tx_init = null;
     let poolAccount = await connection.getAccountInfo(userPool);
@@ -238,7 +236,10 @@ export const createLockMultiPnftTx = async (
 
     let confirmed = 0;
     if (wallet.signAllTransactions) {
-      const signedTxs = tx_init == null ? await wallet.signAllTransactions(txs) : await wallet.signAllTransactions([tx_init, ...txs]);
+      const signedTxs =
+        tx_init == null
+          ? await wallet.signAllTransactions(txs)
+          : await wallet.signAllTransactions([tx_init, ...txs]);
 
       if (tx_init) {
         console.log("sending init tx");
@@ -246,37 +247,36 @@ export const createLockMultiPnftTx = async (
 
         // Send the raw transaction
         const options = {
-            commitment: 'processed',
-            skipPreflight: false,
+          commitment: "processed",
+          skipPreflight: false,
         };
         // Confirm the transaction
         const signature = await connection.sendRawTransaction(sTx, options);
         const blockhash = await connection.getLatestBlockhash();
 
-        const confirmed = await connection.confirmTransaction({
-                signature,
-                blockhash: blockhash.blockhash,
-                lastValidBlockHeight: blockhash.lastValidBlockHeight
-            }, "processed");
+        const confirmed = await connection.confirmTransaction(
+          {
+            signature,
+            blockhash: blockhash.blockhash,
+            lastValidBlockHeight: blockhash.lastValidBlockHeight,
+          },
+          "processed"
+        );
 
         console.log("init tx: ", confirmed);
       }
-      
-      if (tx_init)
-        signedTxs.shift();
+
+      if (tx_init) signedTxs.shift();
 
       await Promise.all(
-        signedTxs.map(async o => {
+        signedTxs.map(async (o) => {
           const encodedTx = Buffer.from(
             o.serialize({ requireAllSignatures: false })
           ).toString("base64");
-          const res = await axios.post(
-            `${BACKEND_URL}/stake/lock`,
-            {
-              encodedTx: encodedTx,
-              user: wallet.publicKey?.toBase58(),
-            }
-          );
+          const res = await axios.post(`${BACKEND_URL}/stake/lock`, {
+            encodedTx: encodedTx,
+            user: wallet.publicKey?.toBase58(),
+          });
 
           if (res.status == 200) confirmed += 1;
         })
@@ -430,17 +430,14 @@ export const createUnlockPnftMultiTx = async (
   if (wallet.signAllTransactions) {
     const signedTxs = await wallet.signAllTransactions(txs);
     await Promise.all(
-      signedTxs.map(async o => {
+      signedTxs.map(async (o) => {
         const encodedTx = Buffer.from(
           o.serialize({ requireAllSignatures: false })
         ).toString("base64");
-        const res = await axios.post(
-          `${BACKEND_URL}/stake/unlock`,
-          {
-            encodedTx: encodedTx,
-            user: wallet.publicKey?.toBase58(),
-          },
-        );
+        const res = await axios.post(`${BACKEND_URL}/stake/unlock`, {
+          encodedTx: encodedTx,
+          user: wallet.publicKey?.toBase58(),
+        });
 
         if (res.status == 200) confirmed += 1;
       })

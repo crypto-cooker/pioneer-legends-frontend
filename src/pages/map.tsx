@@ -24,6 +24,7 @@ import { toast } from "react-toastify";
 import { getCookie } from "cookies-next";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import { CustomCursor } from "../components/cursor/CustomCursor";
 
 interface FactionProps {
   governorCount: number;
@@ -84,7 +85,6 @@ const Map = () => {
       // @ts-ignore
       const mbps = (bps / 1048576).toFixed(2);
 
-      console.log("Speed", mbps, typeof mbps);
       setIsNetSpeed(mbps);
     }
   }, []);
@@ -224,6 +224,7 @@ const Map = () => {
         <title>Map | Pioneer Legends</title>
       </Head>
       <main ref={screen}>
+        <CustomCursor />
         <audio autoPlay loop src="/music/pl_bg20.wav" ref={audio}></audio>
         <div className="relative w-screen h-screen overflow-hidden">
           <div

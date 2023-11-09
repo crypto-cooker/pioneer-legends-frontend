@@ -1,6 +1,6 @@
 import { useWallet } from "@solana/wallet-adapter-react";
 import Image from "next/image";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ModalContext } from "../../context/ModalProvider";
 import {
   UserContext,
@@ -107,7 +107,6 @@ const ProfileModal = () => {
               href="https://magiceden.io/marketplace/pioneer_legends"
               target="_blank"
               rel="noopener noreferrer"
-              className="cursor-pointer"
             >
               Magic Eden
             </a>
@@ -185,7 +184,6 @@ const ProfileModal = () => {
           <div className="w-full min-h-[200px] max-sm:min-h-[calc(100vh-400px)] h-full overflow-x-hidden overflow-y-auto max-h-[200px] max-sm:max-h-[calc(100vh-400px)]">
             {allNftList.length !== 0 ? (
               <div className="grid grid-cols-4 max-sm:grid-cols-3 gap-x-[10px] gap-y-4 relative">
-                {console.log("allNftList", allNftList)}
                 {allNftList.map((item, index) => (
                   <ImageCard
                     key={index}
@@ -206,22 +204,20 @@ const ProfileModal = () => {
         </div>
         <div className="sm:py-10 py-0 sm:h-auto h-[88px] sm:px-0 flex items-center sm:justify-center -ml-[1px] justify-between gap-7 sm:relative fixed w-full left-0 px-5 bottom-0 bg-[#342B2590] backdrop-blur-sm z-[20]">
           <div className="w-full h-8 absolute left-0 bottom-[120px] z-10 pointer-events-none blur-[16px] sm:flex hidden bg-[linear-gradient(#1E1915_0%,#362D26_100%)]" />
-          <Button variant="secondary" onClick={closeModal}>
-            Cancel
-          </Button>
           <Button
-            variant="primary"
+            width={128}
+            main={false}
+            title="Cancel"
+            color="white"
+            onClick={closeModal}
+          />
+          <Button
+            width={128}
+            title="Save"
+            color="white"
+            disable={!isSaving && !isChanged && !checkedImge}
             onClick={update}
-            disabled={isSaving || !isChanged}
-          >
-            {isSaving ? (
-              <div className="w-6 h-6 relative mx-auto animate-spin">
-                <Image src={"/icons/spin.png"} layout="fill" alt="" />
-              </div>
-            ) : (
-              "Save"
-            )}
-          </Button>
+          />
         </div>
       </div>
     </div>

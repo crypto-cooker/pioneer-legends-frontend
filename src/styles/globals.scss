@@ -5,7 +5,7 @@
 
 * {
   scroll-behavior: smooth;
-  cursor: url('/cursor/normal.png'), auto;
+  cursor: none;
 }
 
 
@@ -365,7 +365,6 @@ main {
   clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px);
   display: flex;
   flex-direction: column;
-  cursor: pointer;
 }
 
 .stake_title {

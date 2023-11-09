@@ -26,7 +26,6 @@ const ImageCard = ({
         setCheckedImage(image);
       }}
     >
-      {/* <img src={image} alt="" className="relative z-10" /> */}
       <Image
         src={image}
         layout="fill"
