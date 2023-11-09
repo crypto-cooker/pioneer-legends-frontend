@@ -17,6 +17,7 @@ import {
   useUserData,
 } from "../context/UserProvider";
 import Button from "../components/Button";
+import { CustomCursor } from "../components/cursor/CustomCursor";
 
 export default function Index(props: { isMute: boolean; setIsMute: Function }) {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -112,6 +113,7 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main ref={mainRef}>
+        <CustomCursor />
         <HomeHeader scroll={scroll} />
         <div
           className={`h-screen w-screen left-0 top-0 z-[20] fixed bg-[linear-gradient(180deg,#000_47.89%,rgba(0,0,0,0.00)_100%)] opacity-0 duration-300 ${
@@ -196,7 +198,12 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button variant="primary">See Whitepaper</Button>
+                  <Button
+                    width={152}
+                    main={false}
+                    title="See Whitepaper"
+                    color="white"
+                  />
                 </a>
               </div>
               <div className="grid grid-cols-1 gap-8 my-8 py-12 max-lg:gap-20">
@@ -218,7 +225,12 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button variant="secondary">See Whitepaper</Button>
+                  <Button
+                    width={152}
+                    main={false}
+                    title="See Whitepaper"
+                    color="white"
+                  />
                 </a>
               </div>
             </div>

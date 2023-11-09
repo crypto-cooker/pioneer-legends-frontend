@@ -62,14 +62,18 @@ const DisconnectWalletModal: FC = () => {
             </div>
             <div className="flex justify-center space-x-7 mt-6 pb-9">
               <Button
-                variant="secondary"
+                width={128}
+                main={false}
+                title="Cancel"
+                color="white"
                 onClick={() => setIsDisconnectWalletModal(false)}
-              >
-                Cancel
-              </Button>
-              <Button variant="primary" onClick={handleDisconnect}>
-                Disconnect
-              </Button>
+              />
+              <Button
+                width={128}
+                title="Disconnect"
+                color="white"
+                onClick={handleDisconnect}
+              />
             </div>
           </div>
         </div>

@@ -92,7 +92,6 @@ const MyWalletModal = () => {
               href="https://magiceden.io/marketplace/pioneer_legends"
               target="_blank"
               rel="noopener noreferrer"
-              className="cursor-pointer"
             >
               Magic Eden
             </a>
@@ -211,12 +210,20 @@ const MyWalletModal = () => {
             </div>
           </div>
           <div className="flex w-full gap-8 max-md:justify-between justify-end">
-            <Button variant="secondary" onClick={handleProfileModal}>
-              Edit profile
-            </Button>
-            <Button variant="secondary" onClick={handleDisconnectWalletModal}>
-              Disconnect
-            </Button>
+            <Button
+              width={128}
+              main={false}
+              title="Edit profile"
+              color="white"
+              onClick={handleProfileModal}
+            />
+            <Button
+              width={128}
+              main={false}
+              title="Disconnect"
+              color="white"
+              onClick={handleDisconnectWalletModal}
+            />
           </div>
         </div>
         <div className="mt-20 ml-12 max-md:ml-4 pr-6 max-w-[calc(100%-96px)] max-md:max-w-[calc(100%-32px)] relative z-[20] h-[250px] max-md:h-[calc(100%-350px)] grid grid-cols-5 max-lg:grid-cols-4 max-md:grid-cols-2 gap-[26px] overflow-y-scroll overflow-x-hidden">

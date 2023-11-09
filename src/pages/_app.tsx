@@ -15,22 +15,7 @@ import { UserProvider } from "../context/UserProvider";
 import StakeModal from "../components/Modal/StakeModal";
 import TagManager from "react-gtm-module";
 import "react-loading-skeleton/dist/skeleton.css";
-import styled, { keyframes } from "styled-components";
-import Image from "next/image";
-
-const cursorAnimation = keyframes`
-  /* Define your cursor animation keyframes here */
-`;
-
-const CustomCursor = styled.div`
-  width: 50px;
-  height: 50px;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  pointer-events: none;
-  animation: ${cursorAnimation} 1s infinite; /* Apply the animation */
-`;
+import { HoverContextProvider } from "../context/HoverProvider";
 
 const tagManagerArgs = {
   gtmId: "G-7PRF0Q1K9J",
@@ -58,15 +43,17 @@ export default function App({ Component, pageProps }: AppProps) {
       <WalletModalProvider>
         <UserProvider>
           <ModalProvider>
-            <MainLayout>
-              <Component {...pageProps} />
-              <ProfileModal />
-              <DisconnectWalletModal />
-              <ShareModal />
-              <AboutModal />
-              <MyWalletModal />
-              <StakeModal />
-            </MainLayout>
+            <HoverContextProvider>
+              <MainLayout>
+                <Component {...pageProps} />
+                <ProfileModal />
+                <DisconnectWalletModal />
+                <ShareModal />
+                <AboutModal />
+                <MyWalletModal />
+                <StakeModal />
+              </MainLayout>
+            </HoverContextProvider>
           </ModalProvider>
         </UserProvider>
         <ToastContainer

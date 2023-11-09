@@ -45,22 +45,12 @@ const DisplayNamebox: FC<BoxProps> = ({
     if (!isChanged) {
       setUsername(userData.username);
     }
-    console.log("isChanged", isChanged);
   }, [userData, username]);
 
   return (
     <div className="flex flex-col gap-[10px]">
       <p className="text-white font-medium">Display name</p>
       <div className="mt-2 relative overflow-hidden group">
-        {/* <button
-          className={`absolute right-3 top-3 z-[150] ${
-            !username ? "hidden" : "show"
-          }`}
-          onClick={() => {
-            setUsername("");
-            console.log("hidde?");
-          }}
-        ></button> */}
         <div className="flex justify-between items-center relative w-full">
           {publicKey && (
             <>

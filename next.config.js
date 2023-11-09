@@ -7,7 +7,8 @@ const nextConfig = {
         protocol: "https",
         hostname: "**",
       },
-    ]
+    ],
+    domains: ['arweave.net', 'ipfs.io', 'pioneer.mypinata.cloud'],
   },
   resolve: {
     fallback: {

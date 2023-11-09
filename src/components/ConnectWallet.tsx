@@ -53,13 +53,9 @@ const ConnectWallet = () => {
         ) : (
           <>
             {publicKey ? (
-              <Button variant="primary">
-                Connect wallet
-              </Button>
+              <Button width={142} title="Connect wallet" color="white" />
             ) : (
-              <Button variant="primary">
-                Connect wallet
-              </Button>
+              <Button width={142} title="Connect wallet" color="white" />
             )}
           </>
         )}
