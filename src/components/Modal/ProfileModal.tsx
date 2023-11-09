@@ -52,20 +52,20 @@ const ProfileModal = () => {
     }
     setIsSaving(true);
     try {
-      const sig = await requestSignature(
-        wallet,
-        `Authorize your wallet.\nname: ${username}\nwallet: ${
-          wallet.publicKey?.toBase58() as string
-        }\nnonce: ${getNonce(wallet.publicKey?.toBase58() as string)}`
-      );
-      if (sig) {
+      // const sig = await requestSignature(
+      //   wallet,
+      //   `Authorize your wallet.\nname: ${username}\nwallet: ${
+      //     wallet.publicKey?.toBase58() as string
+      //   }\nnonce: ${getNonce(wallet.publicKey?.toBase58() as string)}`
+      // );
+      const nonce= localStorage.getItem("nonce");
+      if(!nonce) return;
         await updateProfile({
           name: username,
           wallet: wallet.publicKey?.toBase58() as string,
           image: checkedImge,
-          signature: sig.signature,
+          signature: nonce,
         });
-      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -162,7 +162,7 @@ const ProfileModal = () => {
            */}
           {isMobile ? (
             <CloseButton
-              className="absolute -right-5 top-[34px] z-50"
+              className="absolute right-5 top-[34px] z-50"
               onClose={closeModal}
             />
           ) : (
