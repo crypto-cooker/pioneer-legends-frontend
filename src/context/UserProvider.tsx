@@ -205,7 +205,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     try {
       const nonce = await getNonce(publicKey?.toBase58()!);
       const statement = `Authorize your wallet. nonce: ${nonce}`;
-
+      localStorage.setItem("nonce", nonce);
       // If wallet is not connected, connect wallet first
       if (!wallet.publicKey) {
         setIsLedgerSignIn(!!isLedger);
