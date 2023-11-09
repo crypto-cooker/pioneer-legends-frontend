@@ -235,6 +235,7 @@ const Button: FC<ButtonProps> = ({
   const { setHover } = useContext(HoverContext);
 
   return (
+    // @ts-ignore
     <ButtonM
       $sm={small}
       $disable={disable}
@@ -242,19 +243,28 @@ const Button: FC<ButtonProps> = ({
       onMouseLeave={() => setHover(false)}
       onClick={onClick}
     >
-      <MainBord $w={width} $sm={small} $main={main} $disable={disable}>
-        <BorderEffect $sm={small} $main={main} />
-        <ButtonEffect $sm={small} $main={main} />
-        {small ? (
-          <H4 color={color} $weight="500">
-            {title}
-          </H4>
-        ) : (
-          <H3 color={color} $weight="600">
-            {title}
-          </H3>
-        )}
-      </MainBord>
+      {
+        // @ts-ignore
+        <MainBord $w={width} $sm={small} $main={main} $disable={disable}>
+          {
+            // @ts-ignore
+            <BorderEffect $sm={small} $main={main} />
+          }
+          {
+            // @ts-ignore
+            <ButtonEffect $sm={small} $main={main} />
+          }
+          {small ? (
+            <H4 color={color} $weight="500">
+              {title}
+            </H4>
+          ) : (
+            <H3 color={color} $weight="600">
+              {title}
+            </H3>
+          )}
+        </MainBord>
+      }
     </ButtonM>
   );
 };
