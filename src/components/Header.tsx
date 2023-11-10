@@ -9,7 +9,7 @@ const Header: FC = () => {
 
   const router = useRouter();
   const { pathname } = router;
-  
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;

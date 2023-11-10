@@ -57,12 +57,11 @@ const MyWalletModal = () => {
 
   const handleDisconnectWalletModal = () => {
     setIsDisconnectWalletModal(!isDisconnectWalletModal);
-    setIsMyWalletModal(false);
+    // setIsMyWalletModal(false);
   };
 
   const handleProfileModal = () => {
     setIsProfileModal(!isProfileModal);
-    setIsMyWalletModal(false);
   };
 
   const allNftList = useData ? useData.allNftList : [];
@@ -186,11 +185,11 @@ const MyWalletModal = () => {
         </div>
         <div className="flex max-md:flex-col items-center max-md:items-start max-md:gap-9 justify-between z-[20] mt-1 mx-12 relative">
           <div className="flex gap-4 items-center">
-            <div className="w-[100px] h-[100px] rounded-full border-[#2D2721] p-0.5 border-2 grid place-content-center overflow-hidden bg-[radial-gradient(115.57%_115.57%_at_-3.5%_-16%,#3F434B_0%,#2D2721_100%)]">
+            <div className="h-[100px] w-[100px] rounded-[50%] bg-[radial-gradient(115.57%_115.57%_at_-3.5%_-16%,#3F434B_0%,#2D2721_100%);] flex items-center justify-center">
               <img
                 src="/img/default-avatar.jpg"
                 alt=""
-                className="w-[100px] h-[100px] rounded-[50%] object-cover"
+                className="rounded-[50%] w-[84px] h-[84px] object-none"
               />
             </div>
             <div className="">

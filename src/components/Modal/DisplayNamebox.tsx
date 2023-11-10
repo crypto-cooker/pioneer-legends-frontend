@@ -56,7 +56,7 @@ const DisplayNamebox: FC<BoxProps> = ({
             <>
               <input
                 id="username"
-                className="p-3 w-[calc(100%-24px)] left-[12px] bg-[#E1E4CD1A] hover:bg-[#E1E4CD33] text-[#ffffff] outline-none focus:text-white placeholder:text-white peer relative z-[3]"
+                className="p-3 pr-[52px] w-full bg-[#E1E4CD15] hover:bg-[#E1E4CD19] text-[#ffffff] outline-none focus:text-white placeholder:text-white peer relative z-[3] [clip-path:polygon(6px_0,calc(100%-6px)_0,100%_6px,100%_calc(100%-6px),calc(100%-6px)_100%,6px_100%,0_calc(100%-6px),0_6px)]"
                 value={username}
                 placeholder={
                   publicKey.toBase58().slice(0, 5) +
@@ -73,7 +73,7 @@ const DisplayNamebox: FC<BoxProps> = ({
                   caretColor: "#29A3A9",
                 }}
               />
-              <div className="box-outer absolute peer-hover:before:border-r-[22px] peer-hover:before:border-r-[rgba(225,228,205,0.2)] peer-hover:after:border-l-[22px] peer-hover:after:border-l-[rgba(225,228,205,0.2)] "></div>
+              {/* <div className="box-outer absolute peer-hover:before:border-r-[22px] peer-hover:before:border-r-[rgba(225,228,205,0.2)] peer-hover:after:border-l-[22px] peer-hover:after:border-l-[rgba(225,228,205,0.2)] "></div> */}
               <div className="absolute w-full h-full bg-[#fff0] peer-focus:before:bg-[linear-gradient(to_right,#29A3A9_0%,#29A3A9_100%),linear-gradient(to_right,#29A3A9_0%,#29A3A9_100%),linear-gradient(-45deg,transparent_45%,#29A3A9_50%,transparent_55%),linear-gradient(to_right,#29A3A9_0%,#29A3A9_100%),linear-gradient(225deg,transparent_45%,#29A3A9_50%,transparent_55%),linear-gradient(-45deg,transparent_45%,#29A3A9_50%,transparent_55%),linear-gradient(to_right,#29A3A9_0%,#29A3A9_100%),linear-gradient(225deg,transparent_45%,#29A3A9_50%,transparent_55%)] input_border" />
             </>
           )}

@@ -10,7 +10,6 @@ import { LAMPORTS_PER_SOL, SystemProgram, Transaction } from "@solana/web3.js";
 const ConnectWallet = () => {
   const { wallets, select, publicKey, disconnect } = useWallet();
   const { isSignning, sign } = useUserData();
-  const { connection } = useConnection();
 
   const handleConnect = async (walletName: string) => {
     try {
@@ -35,7 +34,8 @@ const ConnectWallet = () => {
 
   useEffect(() => {
     // handleConnect("Phantom");
-  }, []);
+    console.log(isSignning);
+  }, [isSignning]);
 
   return (
     <div className="relative connect">
@@ -51,13 +51,7 @@ const ConnectWallet = () => {
             }}
           />
         ) : (
-          <>
-            {publicKey ? (
-              <Button width={142} title="Connect wallet" color="white" />
-            ) : (
-              <Button width={142} title="Connect wallet" color="white" />
-            )}
-          </>
+          <Button width={142} title="Connect wallet" color="white" />
         )}
       </div>
       <div className="min-w-[238px] py-3 px-4 absolute right-auto left-0 lg:left-auto lg:right-0 top-[40px] connect-drop">

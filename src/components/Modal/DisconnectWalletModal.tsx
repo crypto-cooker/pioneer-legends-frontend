@@ -56,8 +56,8 @@ const DisconnectWalletModal: FC = () => {
           </div>
           <div className="grid place-content-center relative z-10">
             <div className="h-[171px] grid place-content-center md:px-0 px-10 text-center">
-              <p className="text-[24px] text-white font-medium">
-                Are you sure to disconnect wallet?
+              <p className="text-[24px] w-[436px] text-white font-medium">
+                If you close this screen, all changes will be lost. Continue?
               </p>
             </div>
             <div className="flex justify-center space-x-7 mt-6 pb-9">
