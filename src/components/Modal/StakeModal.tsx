@@ -41,14 +41,14 @@ const StakeModal = () => {
   const stakeMulti = async () => {
     if (selected.length !== 0) {
       await stakeMultiNFT(wallet, selected, setLoading, getNfts);
-      setSelected([]);
+      cancelSelect();
     }
   };
 
   const unstakeMulti = async () => {
     if (selected.length !== 0) {
       await unStakeMultiNFT(wallet, selected, setLoading, getNfts);
-      setSelected([]);
+      cancelSelect();
     }
   };
   let faction: string;
@@ -299,7 +299,7 @@ const StakeModal = () => {
                   Select
                 </p>
               ))}
-            {type &&
+            {!type &&
               stakedNfts &&
               stakedNfts.length !== 0 &&
               !selectAble &&
