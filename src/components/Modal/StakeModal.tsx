@@ -350,7 +350,7 @@ const StakeModal = () => {
                     BlankCards()
                   )}
                 </>
-              ) : type ? (
+              ) : !type ? (
                 <>
                   {stakedNfts.length !== 0 ? (
                     <>

@@ -2,21 +2,14 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-
 * {
   scroll-behavior: smooth;
   cursor: none;
 }
 
-
-
 html {
   background-color: #201913;
-}
-
-.custom-hover-cursor {
-  cursor: url('/cursor/hover.png'), auto;
-
+  min-height: 100vh;
 }
 
 .gradient-bg {
