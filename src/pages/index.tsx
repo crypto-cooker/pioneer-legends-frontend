@@ -233,17 +233,15 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
               </div>
             </div>
           </div>
-          {width <= 640 && (
-            <div className="w-full px-4 flex flex-col gap-1">
-              <div className="h-[1px] bg-[#fff] w-full" />
-              <div className="w-full flex justify-between">
-                <img src="/img/mobile_logo.png" alt="" />
-                <h1 className="font-medium text-[10px] leading-[18px] text-white">
-                  @ 2023 Aion Ventures
-                </h1>
-              </div>
+          <div className="w-full px-4 flex flex-col gap-1">
+            <div className="h-[1px] bg-[#fff] w-full" />
+            <div className="w-full flex justify-between md:px-4">
+              <img src="/img/mobile_logo.png" alt="" />
+              <h1 className="font-medium text-[10px] leading-[18px] text-white">
+                @ 2023 Aion Ventures
+              </h1>
             </div>
-          )}
+          </div>
         </div>
       </main>
     </>
