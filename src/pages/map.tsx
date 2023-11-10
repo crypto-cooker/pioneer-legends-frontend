@@ -236,21 +236,22 @@ const Map = () => {
                 wallet.publicKey?.toBase58() ? wallet.publicKey?.toBase58() : ""
               }
             />
-            {width < 800 ? (
-              <div className="absolute bottom-5 left-5 z-50 w-[calc(100%-40px)] flex flex-col gap-1">
-                <div className="h-[1px] w-full bg-white" />
-                <div className="flex justify-between items-center">
+            <div className="absolute bottom-5 left-5 z-50 w-[calc(100%-40px)] flex flex-col gap-1">
+              <div className="h-[1px] w-full bg-white" />
+              <div className="flex justify-between items-center md:px-4">
+                {width < 800 && (
                   <img
                     src="/img/logo@text.png"
                     className="relative object-contain"
                     alt=""
                   />
-                  <h1 className="font-medium text-[10px] leading-[18px] text-white">
-                    © 2023 Aion Ventures
-                  </h1>
-                </div>
+                )}
+                <h1 className="font-medium text-[10px] leading-[18px] text-white flex justify-end w-full">
+                  © 2023 Aion Ventures
+                </h1>
               </div>
-            ) : (
+            </div>
+            {width >= 800 && (
               <div className="absolute top-[21px] left-[26px] z-50 pointer-events-none">
                 <img src="/img/logo@text.png" className="relative" alt="" />
               </div>
@@ -346,7 +347,7 @@ const Map = () => {
                   transform: `scale(${scale}%)`,
                 }}
                 onClick={() => handleOpenSpaceship("townhall")}
-                className=" group"
+                className="group"
               >
                 <img
                   src="/img/build-hover.png"
