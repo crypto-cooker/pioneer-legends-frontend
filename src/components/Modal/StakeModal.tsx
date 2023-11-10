@@ -99,8 +99,11 @@ const StakeModal = () => {
   }, [isStakeModal]);
 
   useEffect(() => {
-    const scale = (width - 360) / 8;
-    setScaleX(`scaleX(${scale})`);
+    if (width - 360 > 8) {
+      setScaleX(`scaleX(${(width - 360) / 8})`);
+    } else {
+      setScaleX(`scaleX(1)`);
+    }
   }, [width]);
 
   if (!wallet.publicKey || !isStakeModal) return <></>;

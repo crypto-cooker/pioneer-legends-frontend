@@ -44,9 +44,11 @@ const MyWalletModal = () => {
   }, [wallet]);
 
   useEffect(() => {
-    let scale = (width - 360) / 8;
-    scale = scale > 0 ? scale : 0;
-    setScaleX(`scaleX(${scale})`);
+    if (width - 360 > 8) {
+      setScaleX(`scaleX(${(width - 360) / 8})`);
+    } else {
+      setScaleX(`scaleX(1)`);
+    }
   }, [width]);
 
   const isMobile = width > 768;
