@@ -4,7 +4,7 @@ export const getNftDetail = async (uri: string) => {
     const response = (await Promise.race([
       fetch(uri, { method: "GET" }),
       new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("Timeout")), 300000)
+        setTimeout(() => reject(new Error("Timeout")), 60000)
       ),
     ])) as Response;
 
@@ -18,8 +18,8 @@ export const getNftDetail = async (uri: string) => {
   } catch (error) {
     // Handle any errors that might occur during the HTTP request
     console.log("fetch nft detail error: ", error);
-    return null;
   }
+  return null;
 };
 
 export const getShortAddress = (address: string) => {
