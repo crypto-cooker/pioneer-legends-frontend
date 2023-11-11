@@ -68,7 +68,7 @@ const ConnectWallet = () => {
   }, []);
 
   useEffect(() => {
-    if (wallet && publicKey) {
+    if (wallet && publicKey && !walletModal.visible) {
       if (signIn && signMessage) {
         setSignIn((prev) => {
           sign();
@@ -81,7 +81,7 @@ const ConnectWallet = () => {
         });
       }
     }
-  }, [wallet, publicKey, signTransaction]);
+  }, [wallet, publicKey, signTransaction, walletModal.visible]);
 
   const handleConnect = async (walletName: string, ledger: boolean = false) => {
     try {
@@ -115,8 +115,12 @@ const ConnectWallet = () => {
       <div
         className="flex flex-row gap-8"
         ref={dropdownButtonRef}
-        onClick={() => {
-          walletModal.setVisible(true);
+        onClick={async() => {
+          if(!wallet){
+            walletModal.setVisible(true);
+          } else {
+            setSignIn(true);
+          }
         }}
       >
         {isSigning ? (
