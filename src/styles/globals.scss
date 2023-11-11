@@ -4,7 +4,42 @@
 
 * {
   scroll-behavior: smooth;
-  cursor: none;
+  cursor: url('/cursor/hover/01.png'), auto;
+  animation: cursor 400ms infinite;
+}
+
+@keyframes cursor {
+  0% {
+    cursor: url('/cursor/hover/01.png'), auto;
+  }
+
+  14% {
+    cursor: url('/cursor/hover/02.png'), auto;
+  }
+
+  28% {
+    cursor: url('/cursor/hover/03.png'), auto;
+  }
+
+  42% {
+    cursor: url('/cursor/hover/04.png'), auto;
+  }
+
+  56% {
+    cursor: url('/cursor/hover/05.png'), auto;
+  }
+
+  70% {
+    cursor: url('/cursor/hover/06.png'), auto;
+  }
+
+  84% {
+    cursor: url('/cursor/hover/07.png'), auto;
+  }
+
+  100% {
+    cursor: url('/cursor/hover/08.png'), auto;
+  }
 }
 
 html {
