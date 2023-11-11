@@ -70,7 +70,7 @@ export const CustomCursor = () => {
   return (
     <Cursor
       animate={{
-        x: cursorPosition.x + 1,
+        x: cursorPosition.x + 3,
         y: cursorPosition.y + 1,
       }}
       transition={{

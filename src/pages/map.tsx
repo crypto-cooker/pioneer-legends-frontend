@@ -224,7 +224,7 @@ const Map = () => {
         <title>Map | Pioneer Legends</title>
       </Head>
       <main ref={screen}>
-        <CustomCursor />
+        {/* <CustomCursor /> */}
         <audio autoPlay loop src="/music/pl_bg20.wav" ref={audio}></audio>
         <div className="relative w-screen h-screen overflow-hidden">
           <div

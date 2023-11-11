@@ -111,7 +111,7 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main ref={mainRef}>
-        <CustomCursor />
+        {/* <CustomCursor /> */}
         <HomeHeader scroll={scroll} />
         <div
           className={`h-screen w-screen left-0 top-0 z-[20] fixed bg-[linear-gradient(180deg,#000_47.89%,rgba(0,0,0,0.00)_100%)] opacity-0 duration-300 ${
