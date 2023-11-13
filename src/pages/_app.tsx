@@ -13,34 +13,52 @@ import AboutModal from "../components/Modal/AboutModal";
 import MyWalletModal from "../components/Modal/MyWalletModal";
 import { UserProvider } from "../context/UserProvider";
 import StakeModal from "../components/Modal/StakeModal";
-import TagManager from "react-gtm-module";
 import "react-loading-skeleton/dist/skeleton.css";
 import {
   HoverContextProvider,
   TabContextProvider,
 } from "../context/ButtonProvider";
 
-const tagManagerArgs = {
-  gtmId: "G-7PRF0Q1K9J",
-  dataLayer: {
-    userId: "001",
-    userProject: "project",
-  },
-};
+const GTM_ID = "G-59578BZHR4";
 
-function initializeGTM() {
-  if (typeof window !== "undefined") {
-    console.log("Initialize GTM");
-    TagManager.initialize(tagManagerArgs);
-  }
+interface Window {
+  dataLayer: any[];
 }
 
-export default function App({ Component, pageProps }: AppProps) {
-  const [position, setPosition] = useState({ x: -100, y: -100 });
-
+const useGoogleTagManager = () => {
   useEffect(() => {
-    initializeGTM();
+    const handleRouteChange = (url: any) => {
+      // Send pageview event to GTM
+      (window as any).dataLayer.push({
+        event: "pageview",
+        pagePath: url,
+      });
+    };
+
+    if (typeof window !== "undefined") {
+      // Load GTM script
+      const gtmScript = document.createElement("script");
+      gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
+      gtmScript.async = true;
+      document.head.appendChild(gtmScript);
+
+      // Initialize GTM data layer
+      (window as any).dataLayer = (window as any).dataLayer || [];
+
+      // Add route change listener
+      window.addEventListener("routeChangeComplete", handleRouteChange);
+
+      return () => {
+        // Remove route change listener
+        window.removeEventListener("routeChangeComplete", handleRouteChange);
+      };
+    }
   }, []);
+};
+
+export default function App({ Component, pageProps }: AppProps) {
+  useGoogleTagManager();
+
   return (
     <WalletConnect>
       <WalletModalProvider>
