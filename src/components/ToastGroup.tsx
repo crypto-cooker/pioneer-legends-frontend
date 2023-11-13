@@ -32,6 +32,6 @@ export const warningAlert = (text: string) => {
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
-    theme: "colored"
+    theme: "colored",
   });
 };

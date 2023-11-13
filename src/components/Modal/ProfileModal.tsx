@@ -47,7 +47,7 @@ const ProfileModal = () => {
 
   const update = async () => {
     if (username === "" || userData.username === "username") {
-      errorAlert("Please enter a valid username.");
+      // errorAlert("Please enter a valid username.");
       return;
     }
     setIsSaving(true);

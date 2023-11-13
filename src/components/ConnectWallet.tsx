@@ -20,7 +20,7 @@ const ConnectWallet = () => {
         if (wallet.readyState === "Installed") {
           select(wallet.adapter.name);
         } else {
-          errorAlert("Cannot connect the wallet!");
+          // errorAlert("Cannot connect the wallet!");
         }
       }
     } catch (error) {
