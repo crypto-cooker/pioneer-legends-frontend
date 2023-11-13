@@ -61,3 +61,5 @@ export const NFT_METADATA = [
 export const BACKEND_URL = "https://pioneerlegends.com:3333";
 
 // export const METADATA_URL = "https://ipfs.io/ipfs/bafybeihfekmexki5l3e5i6bm26a35cm75g7xprcf72n4fjt7edyvaq43iy/";
+
+export const GTM_ID = "G-11JQ5HJJH4";
