@@ -237,25 +237,13 @@ const Map = () => {
               }
             />
             <div className="absolute bottom-5 left-5 z-50 w-[calc(100%-40px)] flex flex-col gap-1">
-              <div className="h-[1px] w-full bg-white" />
-              <div className="flex justify-between items-center md:px-4">
-                {width < 800 && (
-                  <img
-                    src="/img/logo@text.png"
-                    className="relative object-contain"
-                    alt=""
-                  />
-                )}
-                <h1 className="font-medium text-[10px] leading-[18px] text-white flex justify-end w-full">
-                  © 2023 Aion Ventures
-                </h1>
-              </div>
+              <h1 className="font-medium text-[10px] leading-[18px] text-white flex justify-start w-full opacity-60">
+                © 2023 Aion Ventures
+              </h1>
             </div>
-            {width >= 800 && (
-              <div className="absolute top-[21px] left-[26px] z-50 pointer-events-none">
-                <img src="/img/logo@text.png" className="relative" alt="" />
-              </div>
-            )}
+            <div className="absolute top-[21px] left-[26px] z-50 pointer-events-none">
+              <img src="/img/logo@text.png" className="relative" alt="" />
+            </div>
             <div
               className="relative object-center"
               ref={content}
@@ -446,7 +434,7 @@ const Map = () => {
               {isTech && !cookieInfo && <UserTech setIsTech={setIsTech} />}
             </div>
             <div
-              className="h-8 w-8 fixed right-8 bottom-20 bg-[linear-gradient(180deg,rgba(15,9,2,0.7)_0%,rgba(38,33,30,0.7)_100%)] flex items-center justify-center z-50 "
+              className="h-8 w-8 fixed right-6 bottom-6 bg-[linear-gradient(180deg,rgba(15,9,2,0.7)_0%,rgba(38,33,30,0.7)_100%)] flex items-center justify-center z-50 "
               onClick={playingButton}
             >
               {!isPlaying ? (
