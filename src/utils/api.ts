@@ -21,19 +21,16 @@ export const stake = async (
 ) => {
   try {
     setLoading(true);
-    const res = await axios.post(
-      `${BACKEND_URL}/stake/lock`,
-      {
-        encodedTx: stakeTx,
-        user: wallet,
-      }
-    );
+    const res = await axios.post(`${BACKEND_URL}/stake/lock`, {
+      encodedTx: stakeTx,
+      user: wallet,
+    });
     await getNfts();
-    successAlert("Stake successful!");
+    // successAlert("Stake successful!");
     return res.data;
   } catch (err) {
     console.log(err);
-    errorAlert("Something went wrong. Please try again");
+    // errorAlert("Something went wrong. Please try again");
   } finally {
     setLoading(false);
   }
@@ -47,20 +44,17 @@ export const unStake = async (
 ) => {
   try {
     setLoading(true);
-    const res = await axios.post(
-      `${BACKEND_URL}/stake/unlock`,
-      {
-        encodedTx: stakeTx,
-        user: wallet,
-      }
-    );
+    const res = await axios.post(`${BACKEND_URL}/stake/unlock`, {
+      encodedTx: stakeTx,
+      user: wallet,
+    });
 
     await getNfts();
-    successAlert("Unstake successful!");
+    // successAlert("Unstake successful!");
     return res.data;
   } catch (err) {
     console.log(err);
-    errorAlert("Something went wrong. Please try again");
+    // errorAlert("Something went wrong. Please try again");
   } finally {
     setLoading(false);
   }
@@ -120,12 +114,9 @@ export const signature = async (signMessage: any, nonce: string) => {
 
 export const getNonce = async (wallet: string) => {
   if (wallet) {
-    const res = await axios.post(
-      `${BACKEND_URL}/nonce/get-nonce`,
-      {
-        wallet,
-      }
-    );
+    const res = await axios.post(`${BACKEND_URL}/nonce/get-nonce`, {
+      wallet,
+    });
     return res?.data?.nonce;
   }
 };
@@ -136,15 +127,12 @@ export const authorizeUser = async (
   nonce: string,
   isLedger?: boolean
 ) => {
-  const res = await axios.post(
-    `${BACKEND_URL}/user/authorize`,
-    {
-      wallet,
-      signature,
-      nonce,
-      isLedger,
-    }
-  );
+  const res = await axios.post(`${BACKEND_URL}/user/authorize`, {
+    wallet,
+    signature,
+    nonce,
+    isLedger,
+  });
 
   if (res?.status == 200) return true;
   return false;
@@ -162,20 +150,17 @@ export const updateProfile = async ({
   signature: string;
 }) => {
   try {
-    const res = await axios.post(
-      `${BACKEND_URL}/user/setprofile`,
-      {
-        name,
-        wallet,
-        img: image,
-        signature,
-      }
-    );
-    console.log(res);
-    successAlert("Profile is updated!");
+    const res = await axios.post(`${BACKEND_URL}/user/setprofile`, {
+      name,
+      wallet,
+      img: image,
+      signature,
+    });
+    console.log("update res", res);
+    // successAlert("Profile is updated!");
   } catch (error) {
     console.log("profile update error:", error);
-    errorAlert("Something went wrong. Please try again");
+    // errorAlert("Something went wrong. Please try again");
   } finally {
     console.log("api finished");
   }

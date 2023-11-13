@@ -282,7 +282,7 @@ export const createLockMultiPnftTx = async (
         })
       );
       await getNfts();
-      successAlert(`Successfully locked ${confirmed} NFTs`);
+      // successAlert(`Successfully locked ${confirmed} NFTs`);
     }
   } catch (error) {
     console.log(error);
@@ -445,6 +445,6 @@ export const createUnlockPnftMultiTx = async (
       })
     );
     await getNfts();
-    successAlert(`Successfully unlocked ${confirmed} NFTs`);
+    // successAlert(`Successfully unlocked ${confirmed} NFTs`);
   }
 };
