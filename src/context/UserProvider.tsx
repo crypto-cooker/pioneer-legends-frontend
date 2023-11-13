@@ -126,31 +126,33 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
     const nfts: NftItem[] = []; // Initialize with a reasonable capacity
 
-    await Promise.all(nftList.map(async (item) => {
-      if (item.data.creators &&
+    await Promise.all(
+      nftList.map(async (item) => {
+        if (
+          item.data.creators &&
           item.data.creators[0]?.verified === 1 &&
-          item.data.creators[0]?.address === CREATOR_ADDRESS) {
-        const data = await getNftDetail(item.data.uri);
+          item.data.creators[0]?.address === CREATOR_ADDRESS
+        ) {
+          const data = await getNftDetail(item.data.uri);
 
-        if (data) {
-          const stakedNft = stakedData.find((nft) => nft.mint === item.mint);
+          if (data) {
+            const stakedNft = stakedData.find((nft) => nft.mint === item.mint);
 
-          nfts.push({
-            name: data.name,
-            image: data.image,
-            description: data.description,
-            staked: stakedNft ? true : false,
-            user: wallet.publicKey ? wallet.publicKey.toBase58() : "",
-            startTime: stakedNft ? stakedNft.startTime : "",
-            mint: item.mint,
-            uri: item.data.uri,
-            faction: stakedNft ? stakedNft.faction : "",
-          });
+            nfts.push({
+              name: data.name,
+              image: data.image,
+              description: data.description,
+              staked: stakedNft ? true : false,
+              user: wallet.publicKey ? wallet.publicKey.toBase58() : "",
+              startTime: stakedNft ? stakedNft.startTime : "",
+              mint: item.mint,
+              uri: item.data.uri,
+              faction: stakedNft ? stakedNft.faction : "",
+            });
+          }
         }
-      }
-    }));
-
-    console.log(nfts);
+      })
+    );
 
     setAllNftList(nfts);
     setIsDataLoading(false);

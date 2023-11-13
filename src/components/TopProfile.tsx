@@ -108,7 +108,7 @@ const TopProfile: FC<Props> = ({ address }) => {
           )}
         </div>
         <button
-          className="mr-2.5 lg:mr-0 w-6 h-6 flex items-center justify-center hover:bg-[#E1E4CD1A] active:bg-[#1E191566] cursor-none"
+          className="mr-2.5 lg:mr-0 w-6 h-6 flex items-center justify-center hover:bg-[#E1E4CD1A] active:bg-[#1E191566] "
           onClick={() => setOpened(!opened)}
         >
           <HamburgerIcon />
@@ -126,7 +126,7 @@ const TopProfile: FC<Props> = ({ address }) => {
           <ul className="relative z-10" onClick={() => setOpened(false)}>
             <li className="">
               <button
-                className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566] cursor-none"
+                className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566] "
                 onClick={hanleMyWalletModal}
               >
                 My wallet
@@ -136,7 +136,7 @@ const TopProfile: FC<Props> = ({ address }) => {
               <a
                 href="https://www.pioneerlegends.com/"
                 target="_blank"
-                className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566] cursor-none flex gap-2 items-center"
+                className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566]  flex gap-2 items-center"
                 rel="noopener noreferrer"
               >
                 Whitepaper
@@ -145,7 +145,7 @@ const TopProfile: FC<Props> = ({ address }) => {
             </li>
             <li className="">
               <button
-                className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566] cursor-none"
+                className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566] "
                 onClick={handleDisconnectWalletModal}
               >
                 Disconnect wallet
