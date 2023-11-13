@@ -64,7 +64,7 @@ const ConnectWallet = () => {
         ></div>
         <div className="relative z-10 mt-5">
           <button
-            className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566] cursor-none"
+            className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566] "
             onClick={() => handleSign()}
           >
             <div className="flex items-center gap-2">
@@ -72,7 +72,7 @@ const ConnectWallet = () => {
             </div>
           </button>
           <button
-            className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566] cursor-none"
+            className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566] "
             onClick={() => handleConnect("Backpack")}
           >
             <div className="flex items-center gap-2">
@@ -80,7 +80,7 @@ const ConnectWallet = () => {
             </div>
           </button>
           <button
-            className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566] cursor-none"
+            className="p-3 text-[16px] font-medium text-white w-full text-left hover:bg-[#e1e4cd1a] active:bg-[#1e191566] "
             // onClick={() => handleConnect("Ledger")}
             onClick={() => handleSign(true)}
           >
