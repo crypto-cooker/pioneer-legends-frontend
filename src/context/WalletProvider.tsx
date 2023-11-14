@@ -30,7 +30,6 @@ export default function WalletConnect(props: { children: any }) {
       new PhantomWalletAdapter(),
       new SolflareWalletAdapter({ network }),
       new TorusWalletAdapter(),
-      new LedgerWalletAdapter(),
     ],
     [network]
   );
