@@ -1,6 +1,6 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 * {
   scroll-behavior: smooth;
@@ -12,8 +12,7 @@ html {
 }
 
 .gradient-bg {
-  background: linear-gradient(180deg, #4d4036 0%, #362c23 28.12%, #261c13 100%),
-    #d9d9d9 !important;
+  background: linear-gradient(180deg, #4d4036 0%, #362c23 28.12%, #261c13 100%), #d9d9d9 !important;
 }
 
 .wallet-adapter-button.wallet-adapter-button-trigger {
@@ -30,7 +29,6 @@ html {
 
   &::-webkit-scrollbar-track {
     background-color: #342c25;
-    /* Background color of the track */
   }
 
   /* Customize the scrollbar thumb */
@@ -98,9 +96,7 @@ main {
 }
 
 .elipse-animate {
-  background: radial-gradient(45.54% 45.54% at 50% 50%,
-      #fff 0%,
-      rgba(0, 0, 0, 0) 100%);
+  background: radial-gradient(45.54% 45.54% at 50% 50%, #fff 0%, rgba(0, 0, 0, 0) 100%);
   mix-blend-mode: color-dodge;
   width: 84px;
   height: 54px;
@@ -172,16 +168,15 @@ main {
 }
 
 .input_border::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background-size: calc(100% - 20px) 2px, calc(100% - 20px) 2px, 20px 100%,
-    2px 65%, 20px 100%, 20px 100%, 2px 65%, 20px 100%;
-  background-position: 50% 100%, 50% 0%, 100% 24px, 100% 50%, 100% -24px,
-    0 -24px, 0 50%, 0 24px;
+  background-size: calc(100% - 20px) 2px, calc(100% - 20px) 2px, 20px 100%, 2px 65%, 20px 100%,
+    20px 100%, 2px 65%, 20px 100%;
+  background-position: 50% 100%, 50% 0%, 100% 24px, 100% 50%, 100% -24px, 0 -24px, 0 50%, 0 24px;
   background-repeat: no-repeat, no-repeat;
 }
 
@@ -192,7 +187,7 @@ main {
 }
 
 .box-outer:before {
-  content: "";
+  content: '';
   position: absolute;
   top: -1.5px;
   left: -10px;
@@ -202,7 +197,7 @@ main {
 }
 
 .box-outer:after {
-  content: "";
+  content: '';
   position: absolute;
   top: -1.5px;
   right: -10px;
@@ -217,9 +212,7 @@ main {
 }
 
 .tooltip2 {
-  background: linear-gradient(180deg,
-      rgba(255, 255, 255, 0.4) 0%,
-      rgba(255, 255, 255, 0) 100%),
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%),
     linear-gradient(180deg, #0f0902 0%, #26211e 100%);
   opacity: 0.7;
 }
@@ -281,7 +274,7 @@ main {
 
   &::after {
     position: absolute;
-    content: "";
+    content: '';
     width: 100%;
     height: 100%;
     background: linear-gradient(to right, #3e777a, #3e777a),
@@ -291,10 +284,9 @@ main {
       linear-gradient(225deg, transparent 40%, #3e777a 40%),
       linear-gradient(to right, #3e777a, #3e777a),
       linear-gradient(315deg, transparent 40%, #3e777a 40%);
-    background-size: calc(100% - 6px) 2px, 6px 6px, 2px calc(100% - 6px),
-      6px 6px, 6px 6px, 2px calc(100% - 6px), 6px 6px;
-    background-position: 6px 0, 100% 10%, 100% 6px, 100% 90%, 0 90%, 0 6px,
-      0 10%;
+    background-size: calc(100% - 6px) 2px, 6px 6px, 2px calc(100% - 6px), 6px 6px, 6px 6px,
+      2px calc(100% - 6px), 6px 6px;
+    background-position: 6px 0, 100% 10%, 100% 6px, 100% 90%, 0 90%, 0 6px, 0 10%;
     background-repeat: no-repeat, no-repeat;
   }
 }
@@ -303,11 +295,7 @@ main {
   width: 116px;
   height: 56px;
   background: linear-gradient(180deg, #0f0902 -3.57%, #26211e 103.57%);
-  -webkit-clip-path: polygon(0 0,
-      calc(100% - 6px) 0,
-      100% 6px,
-      100% 100%,
-      0 100%);
+  -webkit-clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
   clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
   backdrop-filter: blur(5px);
 }
@@ -344,7 +332,7 @@ main {
 
   &::before {
     position: absolute;
-    content: "";
+    content: '';
     width: 4px;
     height: 4px;
     background-color: #ffd77400;
@@ -358,7 +346,7 @@ main {
 
   &::after {
     position: absolute;
-    content: "";
+    content: '';
     width: 4px;
     height: 4px;
     background-color: #ffd77400;
@@ -374,7 +362,7 @@ main {
 .wrapper span {
   position: absolute;
   top: 75px;
-  font-family: "Lato";
+  font-family: 'Lato';
   font-size: 20px;
   letter-spacing: 12px;
   color: #fff;
@@ -392,7 +380,7 @@ main {
 }
 
 .one::before {
-  content: "";
+  content: '';
   position: absolute;
   height: 55%;
   width: 55%;
@@ -421,7 +409,6 @@ main {
 .button_style {
   position: relative;
 
-
   &::before {
     position: absolute;
     content: '';
@@ -429,9 +416,17 @@ main {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to right, #454A52 0, #454A52 100%), linear-gradient(to right, #454A52 0, #454A52 100%), linear-gradient(to right, #454A52 0, #454A52 100%), linear-gradient(to right, #454A52 0, #454A52 100%), linear-gradient(-45deg, transparent 45%, #454A52 45%, #454A52 80%, transparent 80%), linear-gradient(45deg, transparent 45%, #454A52 45%, #454A52 80%, transparent 80%), linear-gradient(-45deg, transparent 45%, #454A52 45%, #454A52 80%, transparent 80%), linear-gradient(45deg, transparent 45%, #454A52 45%, #454A52 80%, transparent 80%);
+    background: linear-gradient(to right, #454a52 0, #454a52 100%),
+      linear-gradient(to right, #454a52 0, #454a52 100%),
+      linear-gradient(to right, #454a52 0, #454a52 100%),
+      linear-gradient(to right, #454a52 0, #454a52 100%),
+      linear-gradient(-45deg, transparent 45%, #454a52 45%, #454a52 80%, transparent 80%),
+      linear-gradient(45deg, transparent 45%, #454a52 45%, #454a52 80%, transparent 80%),
+      linear-gradient(-45deg, transparent 45%, #454a52 45%, #454a52 80%, transparent 80%),
+      linear-gradient(45deg, transparent 45%, #454a52 45%, #454a52 80%, transparent 80%);
     background-position: 5px 0, 100% 5px, 5px 100%, 0 5px, 0 0, 100% 0, 100% 100%, 0 100%;
-    background-size: calc(100% - 10px) 3px, 3px calc(100% - 10px), calc(100% - 10px) 3px, 3px calc(100% - 10px), 8px 8px, 8px 8px, 8px 8px, 8px 8px;
+    background-size: calc(100% - 10px) 3px, 3px calc(100% - 10px), calc(100% - 10px) 3px,
+      3px calc(100% - 10px), 8px 8px, 8px 8px, 8px 8px, 8px 8px;
     background-repeat: no-repeat, no-repeat;
   }
 
@@ -458,8 +453,12 @@ main {
     left: 0;
     bottom: 0;
     right: 0;
-    background: linear-gradient(-180deg, #181A1D 0%, rgba(75, 72, 69, 0.00) 100%);
-    clip-path: polygon(0 calc(50% - 5px), 3px calc(50% - 8px), 9px 50%, 3px calc(50% + 8px), 0 calc(50% + 5px));
+    background: linear-gradient(-180deg, #181a1d 0%, rgba(75, 72, 69, 0) 100%);
+    clip-path: polygon(0 calc(50% - 5px),
+        3px calc(50% - 8px),
+        9px 50%,
+        3px calc(50% + 8px),
+        0 calc(50% + 5px));
   }
 
   &::after {
@@ -469,8 +468,12 @@ main {
     left: 0;
     bottom: 0;
     right: 0;
-    background: linear-gradient(-180deg, #181A1D 0%, rgba(75, 72, 69, 0.00) 100%);
-    clip-path: polygon(100% calc(50% - 5px), calc(100% - 3px) calc(50% - 8px), calc(100% - 9px) 50%, calc(100% - 3px) calc(50% + 8px), 100% calc(50% + 5px));
+    background: linear-gradient(-180deg, #181a1d 0%, rgba(75, 72, 69, 0) 100%);
+    clip-path: polygon(100% calc(50% - 5px),
+        calc(100% - 3px) calc(50% - 8px),
+        calc(100% - 9px) 50%,
+        calc(100% - 3px) calc(50% + 8px),
+        100% calc(50% + 5px));
   }
 }
 

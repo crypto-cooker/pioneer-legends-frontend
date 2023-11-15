@@ -34,7 +34,7 @@ export interface UserContextProps {
   isAuthrized: boolean;
   setIsAuthrized: Function;
   sign: Function;
-  isSignning: boolean;
+  isSigning: boolean;
   isNetSpeed: string;
   setIsNetSpeed: Function;
 }
@@ -55,7 +55,7 @@ const defaultContext: UserContextProps = {
   isAuthrized: false,
   setIsAuthrized: () => {},
   sign: (isLedger?: boolean) => {},
-  isSignning: false,
+  isSigning: false,
   isNetSpeed: "",
   setIsNetSpeed: () => {},
 };
@@ -70,7 +70,7 @@ export const useUserData = (): {
   isAuthrized: boolean;
   setIsAuthrized: Function;
   sign: Function;
-  isSignning: boolean;
+  isSigning: boolean;
 } => {
   const {
     userData,
@@ -80,7 +80,7 @@ export const useUserData = (): {
     isAuthrized,
     setIsAuthrized,
     sign,
-    isSignning,
+    isSigning,
   } = useContext(UserContext);
   return {
     userData,
@@ -90,7 +90,7 @@ export const useUserData = (): {
     isAuthrized,
     setIsAuthrized,
     sign,
-    isSignning,
+    isSigning,
   };
 };
 
@@ -99,14 +99,11 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [allNftList, setAllNftList] = useState<NftItem[]>([]);
   const [userData, setUserData] = useState<User>(defaultContext.userData);
   const [isAuthrized, setIsAuthrized] = useState<boolean>(false);
-  const [isSignning, setIsSignning] = useState(false);
+  const [isSigning, setIsSigning] = useState(false);
   const [isNetSpeed, setIsNetSpeed] = useState("");
-
-  const [isLedgerSignIn, setIsLedgerSignIn] = useState(false);
-
   const router = useRouter();
 
-  const { signMessage, publicKey, connected } = useWallet();
+  const { signMessage, publicKey, connected, } = useWallet();
 
   const wallet = useWallet();
   const walletModal = useWalletModal();
@@ -184,24 +181,12 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setIsDataLoading(false);
   };
 
-  useEffect(() => {
-    if (wallet.publicKey && !isAuthrized && !walletModal.visible) {
-      sign(true);
-    }
-  }, [walletModal.visible, wallet]);
-
-  const sign = async (isLedger?: boolean) => {
-    setIsSignning(true);
+  const sign = async (isLedger: boolean = false) => {
+    setIsSigning(true);
     try {
       const nonce = await getNonce(publicKey?.toBase58()!);
       const statement = `Authorize your wallet. nonce: ${nonce}`;
       localStorage.setItem("nonce", nonce);
-      // If wallet is not connected, connect wallet first
-      if (!wallet.publicKey) {
-        setIsLedgerSignIn(!!isLedger);
-        walletModal.setVisible(true);
-        return;
-      }
 
       if (!isLedger) {
         if (!signMessage) {
@@ -263,7 +248,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     } catch (error) {
       console.log("sign error", error);
     } finally {
-      setIsSignning(false);
+      setIsSigning(false);
     }
   };
 
@@ -288,7 +273,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         isAuthrized,
         setIsAuthrized,
         sign,
-        isSignning,
+        isSigning,
         isNetSpeed,
         setIsNetSpeed,
       }}
