@@ -241,7 +241,7 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
               </div>
               <div className="flex flex-col gap-8 max-lg:my-0 my-8 py-12 max-lg:gap-0 items-center justify-center">
                 {HOME_INTRO_CONTENT.map((item, key) => (
-                  <>
+                  <div key={item.title}>
                     <StyleScrow src="/img/screw.png" />
                     <StyleH1 $weight="400" color="#ffd15f">
                       {item.title}
@@ -253,9 +253,8 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
                       url={item.media}
                       title={item.title}
                       description={item.desciption}
-                      key={item.title}
                     />
-                  </>
+                  </div>
                 ))}
               </div>
               <h1 className="text-2xl text-center text-white">

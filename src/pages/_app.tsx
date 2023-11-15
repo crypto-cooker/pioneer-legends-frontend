@@ -1,5 +1,5 @@
 import { AppProps } from "next/app";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "../styles/globals.scss";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { ToastContainer } from "react-toastify";
@@ -61,15 +61,15 @@ export default function App({ Component, pageProps }: AppProps) {
 
   console.log(
     "        _                              _                           _     \n" +
-    "       (_)                            | |                         | |    \n" +
-    "  _ __  _  ___  _ __   ___  ___ _ __  | | ___  __ _  ___ _ __   __| |___ \n" +
-    " | '_ \\| |/ _ \\| '_ \\ / _ \\/ _ \\ '__| | |/ _ \\/ _` |/ _ \\ '_ \\ / _` / __|\n" +
-    " | |_) | | (_) | | | |  __/  __/ |    | |  __/ (_| |  __/ | | | (_| \\__ \\ \n" +
-    " | .__/|_|\\___/|_| |_|\\___|\\___|_|    |_|\\___|\\__, |\\___|_| |_|\\__,_|___/\n" +
-    " | |                                           __/ |                     \n" +
-    " |_|                                          |___/                      "
+      "       (_)                            | |                         | |    \n" +
+      "  _ __  _  ___  _ __   ___  ___ _ __  | | ___  __ _  ___ _ __   __| |___ \n" +
+      " | '_ \\| |/ _ \\| '_ \\ / _ \\/ _ \\ '__| | |/ _ \\/ _` |/ _ \\ '_ \\ / _` / __|\n" +
+      " | |_) | | (_) | | | |  __/  __/ |    | |  __/ (_| |  __/ | | | (_| \\__ \\ \n" +
+      " | .__/|_|\\___/|_| |_|\\___|\\___|_|    |_|\\___|\\__, |\\___|_| |_|\\__,_|___/\n" +
+      " | |                                           __/ |                     \n" +
+      " |_|                                          |___/                      "
   );
-  
+
   return (
     <WalletConnect>
       <WalletModalProvider>
