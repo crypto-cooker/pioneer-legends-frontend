@@ -295,7 +295,7 @@ const Map = () => {
                   alt=""
                   draggable="false"
                 />
-                <div className="w-[180px] mt-5 ml-8 h-[74px] pt-3 relative z-10 backdrop-blur-[2px] before:absolute before:left-0 before:top-0 before:right-0 before:bottom-0 before:opacity-70 before:bg-[linear-gradient(180deg,#0F0902_0%,#26211E_100%)] before:duration-[1.2s] group-hover:before:bg-[linear-gradient(180deg,rgba(255,255,255,0.4)_0%,rgba(255,255,255,0)_100%),linear-gradient(180deg,#0F0902_0%,#26211E_100%)] duration-[1.2s] group-hover:translate-y-3">
+                <div className="w-[180px] mt-5 ml-8 h-[74px] pt-3 relative z-10 backdrop-blur-[2px] before:absolute before:left-0 before:top-0 before:right-0 before:bottom-0 before:opacity-70 before:bg-[linear-gradient(180deg,#0F0902_0%,#26211E_100%)] before:duration-[1.2s] group-hover:before:bg-[linear-gradient(180deg,rgba(255,255,255,0.4)_0%,rgba(255,255,255,0)_100%),linear-gradient(180deg,#0F0902_0%,#26211E_100%)] bubble_anime_1">
                   <div
                     className="w-[18px] h-2.5 overflow-hidden absolute -translate-x-1/2 z-[9] ml-1"
                     style={{
@@ -347,7 +347,7 @@ const Map = () => {
                   alt=""
                   draggable="false"
                 />
-                <div className="ml-7 -mt-[360px] w-[180px] h-[74px] pt-3 relative z-10 backdrop-blur-[2px] before:absolute before:left-0 before:top-0 before:right-0 before:bottom-0 before:opacity-70 before:bg-[linear-gradient(180deg,#0F0902_0%,#26211E_100%)] before:duration-[1.2s] group-hover:before:bg-[linear-gradient(180deg,rgba(255,255,255,0.4)_0%,rgba(255,255,255,0)_100%),linear-gradient(180deg,#0F0902_0%,#26211E_100%)] duration-[1.2s] group-hover:-translate-y-3">
+                <div className="ml-7 -mt-[360px] w-[180px] h-[74px] pt-3 relative z-10 backdrop-blur-[2px] before:absolute before:left-0 before:top-0 before:right-0 before:bottom-0 before:opacity-70 before:bg-[linear-gradient(180deg,#0F0902_0%,#26211E_100%)] before:duration-[1.2s] group-hover:before:bg-[linear-gradient(180deg,rgba(255,255,255,0.4)_0%,rgba(255,255,255,0)_100%),linear-gradient(180deg,#0F0902_0%,#26211E_100%)] bubble_anime_2">
                   <div
                     className="w-[18px] h-2.5 overflow-hidden absolute -translate-x-1/2 z-[9] ml-1"
                     style={{
@@ -387,7 +387,7 @@ const Map = () => {
                   transform: `scale(${scale}%)`,
                 }}
                 onClick={() => handleOpenSpaceship("mining")}
-                className=" group"
+                className="group"
               >
                 <img
                   src="/img/build-hover1.png"
@@ -399,7 +399,7 @@ const Map = () => {
                   alt=""
                   draggable="false"
                 />
-                <div className="ml-[34px] -mt-[300px] w-[180px] h-[74px] pt-3 relative z-10 backdrop-blur-[2px] before:absolute before:left-0 before:top-0 before:right-0 before:bottom-0 before:opacity-70 before:bg-[linear-gradient(180deg,#0F0902_0%,#26211E_100%)] before:duration-[1.2s] group-hover:before:bg-[linear-gradient(180deg,rgba(255,255,255,0.4)_0%,rgba(255,255,255,0)_100%),linear-gradient(180deg,#0F0902_0%,#26211E_100%)] duration-[1.2s] group-hover:-translate-y-3">
+                <div className="ml-[34px] -mt-[300px] w-[180px] h-[74px] pt-3 relative z-10 backdrop-blur-[2px] before:absolute before:left-0 before:top-0 before:right-0 before:bottom-0 before:opacity-70 before:bg-[linear-gradient(180deg,#0F0902_0%,#26211E_100%)] before:duration-[1.2s] group-hover:before:bg-[linear-gradient(180deg,rgba(255,255,255,0.4)_0%,rgba(255,255,255,0)_100%),linear-gradient(180deg,#0F0902_0%,#26211E_100%)] bubble_anime_3">
                   <div
                     className="w-[18px] h-2.5 overflow-hidden absolute -translate-x-1/2 z-[9] ml-1"
                     style={{

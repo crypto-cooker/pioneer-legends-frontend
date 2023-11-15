@@ -473,3 +473,29 @@ main {
     clip-path: polygon(100% calc(50% - 5px), calc(100% - 3px) calc(50% - 8px), calc(100% - 9px) 50%, calc(100% - 3px) calc(50% + 8px), 100% calc(50% + 5px));
   }
 }
+
+.bubble_anime_1 {
+  animation: bubble 2.4s ease-in-out infinite;
+}
+
+.bubble_anime_2 {
+  animation: bubble 2.4s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+
+.bubble_anime_3 {
+  animation: bubble 2.4s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+
+@keyframes bubble {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(12px);
+  }
+}
