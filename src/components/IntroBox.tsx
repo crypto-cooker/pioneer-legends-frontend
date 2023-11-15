@@ -19,12 +19,7 @@ const IntroBox: FC<BoxProps> = ({ image, title, description }) => {
       </div>
       <div className="max-w-[calc(100vw-32px)] w-[316px] lg:w-[974px] h-[316px] lg:h-[360px] bg-[linear-gradient(180deg,#1F1B18_0%,#393028_100%)] rounded-2xl relative p-2">
         <div className="absolute -right-1 -bottom-3">
-          <Image
-            src={"/img/Deco_rightbottom.png"}
-            width={100}
-            height={100}
-            alt=""
-          />
+          <Image src={"/img/bottom.png"} width={100} height={100} alt="" />
         </div>
         <div className="absolute -left-1 -bottom-3">
           <Image
@@ -38,7 +33,7 @@ const IntroBox: FC<BoxProps> = ({ image, title, description }) => {
           <Image src={"/img/Deco_lefttop.png"} width={80} height={60} alt="" />
         </div>
         <div className="absolute -right-1 -top-1">
-          <Image src={"/img/Deco_righttop.png"} width={80} height={60} alt="" />
+          <Image src={"/img/top.png"} width={80} height={60} alt="" />
         </div>
 
         <div className="items-center h-full hidden lg:flex">

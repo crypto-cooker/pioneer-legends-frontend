@@ -81,7 +81,7 @@ const MyWalletModal = () => {
         <div className="w-[154px] h-[220px] shadow-[6px_6px_0_#1E1915] opacity-10 justify-self-center">
           <div className="blank_card"></div>
         </div>
-        <div className="w-[154px] h-[220px] shadow-[6px_6px_0_#1E1915] opacity-10 justify-self-center">
+        <div className="w-[154px] h-[220px] shadow-[6px_6px_0_#1E1915] opacity-10 justify-self-center max-lg:hidden">
           <div className="blank_card"></div>
         </div>
         <h1 className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 font-medium text-center text-[#E4DECD]">
@@ -124,7 +124,7 @@ const MyWalletModal = () => {
           className="absolute -bottom-1 -left-1 z-[2] max-md:hidden"
         />
         <img
-          src="/img/Deco_rightbottom.png"
+          src="/img/bottom.png"
           alt="B_R"
           className="absolute -bottom-1 -right-1 z-[2] max-md:hidden"
         />
@@ -134,7 +134,7 @@ const MyWalletModal = () => {
           className="absolute -top-1 -left-1 z-[2] max-md:hidden"
         />
         <img
-          src="/img/Deco_righttop.png"
+          src="/img/top.png"
           alt="T_R"
           className="absolute -top-1 -right-1 z-[2] max-md:hidden"
         />
@@ -225,7 +225,7 @@ const MyWalletModal = () => {
             />
           </div>
         </div>
-        <div className="mt-20 ml-12 max-md:ml-4 pr-6 max-w-[calc(100%-96px)] max-md:max-w-[calc(100%-32px)] relative z-[20] h-[250px] max-md:h-[calc(100%-350px)] grid grid-cols-5 max-lg:grid-cols-4 max-md:grid-cols-2 gap-[26px] overflow-y-scroll overflow-x-hidden">
+        <div className="mt-20 ml-12 max-md:ml-4 pr-6 max-w-[calc(100%-96px)] max-md:max-w-[calc(100%-32px)] relative z-[20] h-[250px] max-md:h-[calc(100%-350px)] grid grid-cols-5 max-lg:grid-cols-4 max-md:grid-cols-2 gap-[26px] overflow-y-auto overflow-x-hidden custom-scroll">
           {useData.isDataLoading ? (
             <NftLoading />
           ) : (

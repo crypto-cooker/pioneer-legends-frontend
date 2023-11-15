@@ -56,7 +56,7 @@ const ConnectWallet = () => {
       </div>
       <div className="min-w-[238px] py-3 px-4 absolute right-auto left-0 lg:left-auto lg:right-0 top-[40px] connect-drop">
         <div
-          className="absolute left-0 top-5 w-full h-[calc(100%-20px)] opacity-70 backdrop-blur-[10px]"
+          className="absolute left-0 top-4 w-full h-[calc(100%-20px)] opacity-70 backdrop-blur-[10px]"
           style={{
             backgroundImage:
               "linear-gradient(180deg, #0F0902 0%, #26211E 100%)",

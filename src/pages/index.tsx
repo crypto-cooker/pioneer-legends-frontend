@@ -18,6 +18,39 @@ import {
 } from "../context/UserProvider";
 import Button from "../components/Button";
 import { CustomCursor } from "../components/cursor/CustomCursor";
+import { LPCard } from "../components/LPCard";
+import { styled } from "styled-components";
+import { H1, H4 } from "../components/font/font";
+
+const StyleScrow = styled.img`
+  margin: 32px 0;
+  display: flex;
+
+  @media only screen and (min-width: 1024px) {
+    display: none;
+  }
+`;
+
+const StyleH1 = styled(H1)`
+  margin-bottom: 16px;
+  display: flex;
+
+  @media only screen and (min-width: 1024px) {
+    display: none;
+  }
+`;
+
+const StyleH4 = styled(H4)`
+  text-align: center;
+  margin-bottom: 16px;
+  max-width: calc(100% - 40px);
+  width: 100%;
+  display: flex;
+
+  @media only screen and (min-width: 1024px) {
+    display: none;
+  }
+`;
 
 export default function Index(props: { isMute: boolean; setIsMute: Function }) {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -122,7 +155,9 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
         />
         <video
           ref={video}
-          className="w-full h-screen object-cover object-center fixed z-[1]"
+          className={`w-full h-screen object-cover object-center fixed z-[1] duration-[1.5s] ${
+            scroll < -200 ? "scale-150" : "scale-100"
+          }`}
           autoPlay={true}
           playsInline
           loop
@@ -168,7 +203,7 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
         </div>
         <div
           className={`relative overflow-hidden z-20 ${
-            scroll < -200 ? "backdrop-blur-[6px]" : ""
+            scroll < -200 ? "backdrop-blur-[40px]" : ""
           }`}
         >
           <div className="grid place-content-center h-screen relative z-10">
@@ -204,14 +239,23 @@ export default function Index(props: { isMute: boolean; setIsMute: Function }) {
                   />
                 </a>
               </div>
-              <div className="grid grid-cols-1 gap-8 my-8 py-12 max-lg:gap-20">
+              <div className="flex flex-col gap-8 max-lg:my-0 my-8 py-12 max-lg:gap-0 items-center justify-center">
                 {HOME_INTRO_CONTENT.map((item, key) => (
-                  <IntroBox
-                    title={item.title}
-                    key={key}
-                    description={item.desciption}
-                    image={item.media}
-                  />
+                  <>
+                    <StyleScrow src="/img/screw.png" />
+                    <StyleH1 $weight="400" color="#ffd15f">
+                      {item.title}
+                    </StyleH1>
+                    <StyleH4 color="FFF" $weight="500">
+                      {item.desciption}
+                    </StyleH4>
+                    <LPCard
+                      url={item.media}
+                      title={item.title}
+                      description={item.desciption}
+                      key={item.title}
+                    />
+                  </>
                 ))}
               </div>
               <h1 className="text-2xl text-center text-white">

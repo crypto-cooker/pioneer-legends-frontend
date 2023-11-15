@@ -23,27 +23,27 @@ html {
 }
 
 .custom-scroll {
+  &::-webkit-scrollbar {
+    width: 8px;
+    /* Width of the scrollbar */
+  }
+
   &::-webkit-scrollbar-track {
-    background: url("../assets/scroll-active.png");
-    /* Replace with your image URL */
-    background-size: cover;
+    background-color: #342c25;
+    /* Background color of the track */
   }
 
-  /* Customize the appearance of the scrollbar thumb (optional) */
+  /* Customize the scrollbar thumb */
   &::-webkit-scrollbar-thumb {
-    background-color: #333;
-    /* Customize the thumb color */
+    background-color: #473c34;
   }
 
-  /* Customize the scrollbar's corner (optional) */
-  &::-webkit-scrollbar-corner {
-    background: #fff;
-    /* Customize the corner color */
+  /* Customize the scrollbar thumb on hover */
+  &::-webkit-scrollbar-thumb {
+    background-color: #473c34;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
-
-  scrollbar-color: #333 #fff;
-  /* Thumb and track colors */
-  scrollbar-width: thin;
 }
 
 .card-mask {
@@ -52,29 +52,6 @@ html {
 
 .drop-scroll {
   animation: drop-scroll 3200ms infinite;
-}
-
-/* Customize the scrollbar track */
-::-webkit-scrollbar {
-  width: 8px;
-  /* Width of the scrollbar */
-}
-
-::-webkit-scrollbar-track {
-  background-color: #342c25;
-  /* Background color of the track */
-}
-
-/* Customize the scrollbar thumb */
-::-webkit-scrollbar-thumb {
-  background-color: #473c34;
-}
-
-/* Customize the scrollbar thumb on hover */
-::-webkit-scrollbar-thumb {
-  background-color: #473c34;
-  background-size: contain;
-  background-repeat: no-repeat;
 }
 
 main {
@@ -131,9 +108,9 @@ main {
 }
 
 .eclips-animate {
-  animation: eclips-animate 2s infinite;
+  animation: eclips-animate 5s infinite;
   animation-timing-function: cubic-bezier(0, 0, 1, 1);
-  animation-delay: 0.5s;
+  // animation-delay: 0.5s;
 }
 
 @keyframes eclips-animate {

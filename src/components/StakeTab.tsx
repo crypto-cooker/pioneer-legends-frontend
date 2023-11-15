@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { styled } from "styled-components";
 import { HoverContext, TabContext } from "../context/ButtonProvider";
-import { H3 } from "./font/font";
+import { H4 } from "./font/font";
 
 interface TabProps {
   $type: boolean;
@@ -35,7 +35,7 @@ const ButtonEffect = styled.div`
   transform: scaleX(0);
 `;
 
-const UpdateH = styled(H3)`
+const UpdateH = styled(H4)`
   transition: all 0.3s ease-in-out;
 `;
 

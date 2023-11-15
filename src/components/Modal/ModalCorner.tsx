@@ -4,12 +4,7 @@ const ModalEdges = () => {
   return (
     <>
       <div className="absolute -right-1 -bottom-3">
-        <Image
-          src={"/img/Deco_rightbottom.png"}
-          width={100}
-          height={100}
-          alt=""
-        />
+        <Image src={"/img/bottom.png"} width={100} height={100} alt="" />
       </div>
       <div className="absolute -left-1 -bottom-3">
         <Image
@@ -23,7 +18,7 @@ const ModalEdges = () => {
         <Image src={"/img/Deco_lefttop.png"} width={80} height={60} alt="" />
       </div>
       <div className="absolute -right-1 -top-1">
-        <Image src={"/img/Deco_righttop.png"} width={80} height={60} alt="" />
+        <Image src={"/img/top.png"} width={80} height={60} alt="" />
       </div>
     </>
   );
