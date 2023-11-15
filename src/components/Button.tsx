@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
 import { styled } from "styled-components";
 import { HoverContext } from "../context/ButtonProvider";
-import { H3, H4 } from "./font/font";
+import { H4, H5 } from "./font/font";
 
 interface ButtonProps {
   onClick?: () => void;
@@ -255,13 +255,13 @@ const Button: FC<ButtonProps> = ({
             <ButtonEffect $sm={small} $main={main} />
           }
           {small ? (
-            <H4 color={color} $weight="500">
+            <H5 color={color} $weight="500">
+              {title}
+            </H5>
+          ) : (
+            <H4 color={color} $weight="600">
               {title}
             </H4>
-          ) : (
-            <H3 color={color} $weight="600">
-              {title}
-            </H3>
           )}
         </MainBord>
       }

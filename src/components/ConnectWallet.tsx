@@ -143,7 +143,7 @@ const ConnectWallet = () => {
         ref={dropdownRef}
       >
         <div
-          className="absolute left-0 top-5 w-full h-[calc(100%-20px)] opacity-70 backdrop-blur-[10px]"
+          className="absolute left-0 top-4 w-full h-[calc(100%-20px)] opacity-70 backdrop-blur-[10px]"
           style={{
             backgroundImage:
               "linear-gradient(180deg, #0F0902 0%, #26211E 100%)",

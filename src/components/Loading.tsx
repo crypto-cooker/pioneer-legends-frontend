@@ -70,7 +70,7 @@ const Loading = () => {
               <p className="font-extrabold italic text-[52px] text-white absolute left-1/2 -translate-x-1/2 -top-[38px]">
                 {mountingProgress}
               </p>
-              <div className="absolute left-0 w-[213px] h-20 overflow-hidden -bottom-[37px]">
+              <div className="absolute left-0 w-[213px] h-20 overflow-hidden">
                 <EclipsSymbol className="eclips-animate" />
               </div>
             </div>

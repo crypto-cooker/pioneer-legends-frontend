@@ -81,7 +81,7 @@ const MyWalletModal = () => {
         <div className="w-[154px] h-[220px] shadow-[6px_6px_0_#1E1915] opacity-10 justify-self-center">
           <div className="blank_card"></div>
         </div>
-        <div className="w-[154px] h-[220px] shadow-[6px_6px_0_#1E1915] opacity-10 justify-self-center">
+        <div className="w-[154px] h-[220px] shadow-[6px_6px_0_#1E1915] opacity-10 justify-self-center max-lg:hidden">
           <div className="blank_card"></div>
         </div>
         <h1 className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 font-medium text-center text-[#E4DECD]">
@@ -124,7 +124,7 @@ const MyWalletModal = () => {
           className="absolute -bottom-1 -left-1 z-[2] max-md:hidden"
         />
         <img
-          src="/img/Deco_rightbottom.png"
+          src="/img/bottom.png"
           alt="B_R"
           className="absolute -bottom-1 -right-1 z-[2] max-md:hidden"
         />
@@ -134,7 +134,7 @@ const MyWalletModal = () => {
           className="absolute -top-1 -left-1 z-[2] max-md:hidden"
         />
         <img
-          src="/img/Deco_righttop.png"
+          src="/img/top.png"
           alt="T_R"
           className="absolute -top-1 -right-1 z-[2] max-md:hidden"
         />
@@ -183,7 +183,7 @@ const MyWalletModal = () => {
             </button>
           )}
         </div>
-        <div className="flex max-md:flex-col items-center max-md:items-start max-md:gap-9 justify-between z-[20] mt-1 mx-12 relative">
+        <div className="flex max-md:flex-col items-center max-md:items-start max-md:gap-9 justify-between z-[20] mt-1 mx-12 max-sm:mx-5 relative">
           <div className="flex gap-4 items-center">
             <div className="h-[100px] w-[100px] rounded-[50%] bg-[radial-gradient(115.57%_115.57%_at_-3.5%_-16%,#3F434B_0%,#2D2721_100%);] flex items-center justify-center">
               <img
@@ -208,16 +208,16 @@ const MyWalletModal = () => {
               </div>
             </div>
           </div>
-          <div className="flex w-full gap-8 max-md:justify-between justify-end">
+          <div className="flex w-full gap-8 max-sm:gap-4 max-md:justify-between justify-end">
             <Button
-              width={128}
+              width={160}
               main={false}
               title="Edit profile"
               color="white"
               onClick={handleProfileModal}
             />
             <Button
-              width={128}
+              width={160}
               main={false}
               title="Disconnect"
               color="white"
@@ -225,7 +225,7 @@ const MyWalletModal = () => {
             />
           </div>
         </div>
-        <div className="mt-20 ml-12 max-md:ml-4 pr-6 max-w-[calc(100%-96px)] max-md:max-w-[calc(100%-32px)] relative z-[20] h-[250px] max-md:h-[calc(100%-350px)] grid grid-cols-5 max-lg:grid-cols-4 max-md:grid-cols-2 gap-[26px] overflow-y-scroll overflow-x-hidden">
+        <div className="mt-20 ml-12 max-md:ml-5 pr-6 max-sm:pr-0 max-w-[calc(100%-96px)] max-md:max-w-[calc(100%-40px)] relative z-[20] h-[250px] max-md:h-[calc(100%-350px)] grid grid-cols-5 max-lg:grid-cols-4 max-md:grid-cols-2 gap-[16px] overflow-y-auto overflow-x-hidden custom-scroll">
           {useData.isDataLoading ? (
             <NftLoading />
           ) : (
